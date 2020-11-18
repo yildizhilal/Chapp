@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "656773297356",
+    "firebase_url": "https://chapp-694aa.firebaseio.com",
+    "project_id": "chapp-694aa",
+    "storage_bucket": "chapp-694aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656773297356:android:855d7a5ac81b6badd8fe69",
+        "android_client_info": {
+          "package_name": "com.chapp.chappApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "656773297356-923246s3qhku01b13a1bhtg8jcn6m8a5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsk4XwO5PnahbKSxIHunJcqVlXIaIZDf4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "656773297356-923246s3qhku01b13a1bhtg8jcn6m8a5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

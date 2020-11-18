@@ -1,64 +1,96 @@
 import React, { useState }  from 'react';
 import {View, Text, StyleSheet,Button,TextInput, ImageBackground,TouchableOpacity,Picker } from 'react-native';
-
+import Firebase from '../../config/Firebase';
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
 const Kayit = props => {
 
   const {navigation} = props;
-  state={
-    cinsiyet:"",
-    kilo:"",
-    boy:"",
-    yas:"",
-    hedef:"",
-  }
-  const [selectedValue, setSelectedValue] = useState("Cinsiyetiniz..");
+ 
+
+  const dbh = Firebase.firestore();
+
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
+  const [kullaniciadi, setkullaniciadi] = useState('');
+  const [soyisim, setsoyisim] = useState('');
+  const [isim, setisim] = useState('');
+  const [secim, setsecim] = useState('');
+
+  handleSignUp = () => {
+    Firebase.auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(() => navigation.navigate('KayitNext'))
+        .catch(error => console.log(error))
+}
+
+var radio_props = [
+  {label: 'Kilomu Koru', value: 0 },
+  {label: 'Kilo Ver', value: 1 },
+  {label: 'Kilo Al', value: 2 }
+];
+
+  const [selectedValue, setSelectedValue] = useState("seçim yapınız");
   return (
 
     <ImageBackground style={{flex: 1, opacity: 0.9,}} source={{uri: 'https://cdn.pixabay.com/photo/2019/05/28/10/05/rock-4234793_960_720.jpg'}}>
 <View style={styles.container}>
     <Text style={styles.logo}>Bazı bilgilere ihtiyacımız var..:)</Text>
-    <Picker
-        selectedValue={selectedValue}
-        style={styles.pickerStyle}
-        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-        
-      >
-        <Picker.Item label="Cinsiyetiniz.." value=" " />
-        <Picker.Item label="kadin" value="kadin" />
-        <Picker.Item label="erkek" value="erkek" />
-      </Picker>
+    
     <View style={styles.inputView} >
       <TextInput  
         style={styles.inputText}
-        placeholder="Kilonuz:" 
+        placeholder="Kullanıcı adı:" 
         placeholderTextColor="#003f5c"
-        onChangeText={text => this.setState({kilo:text})}/>
+        onChangeText={kullaniciadi => setkullaniciadi(kullaniciadi)}
+        defaultValue={kullaniciadi}/>
     </View>
     <View style={styles.inputView} >
       <TextInput  
         secureTextEntry
         style={styles.inputText}
-        placeholder="Boyunuz:" 
+        placeholder="adınz:" 
         placeholderTextColor="#003f5c"
-        onChangeText={text => this.setState({boy:text})}/>
+        onChangeText={isim => setisim(isim)}
+        defaultValue={isim}/>
     </View>
     <View style={styles.inputView} >
       <TextInput  
         style={styles.inputText}
-        placeholder="Yaşınız:" 
+        placeholder="Soyadınız:" 
         placeholderTextColor="#003f5c"
-        onChangeText={text => this.setState({yas:text})}/>
+        onChangeText={soyisim => setsoyisim(soyisim)}
+        defaultValue={soyisim}/>
     </View>
     <View style={styles.inputView} >
       <TextInput  
         style={styles.inputText}
-        placeholder="Hedef Kilonuz:" 
+        placeholder="E-mail:" 
         placeholderTextColor="#003f5c"
-        onChangeText={text => this.setState({hedef:text})}/>
+        onChangeText={email => setemail(email)}
+        defaultValue={email}/>
     </View>
- 
-    <TouchableOpacity style={styles.devamBtn}>
+    <View style={styles.inputView} >
+      <TextInput  
+        style={styles.inputText}
+        placeholder="password:" 
+        placeholderTextColor="#003f5c"
+        onChangeText={password => setpassword(password)}
+        defaultValue={password}/>
+    </View>
+    <View style={styles.radio}>
+    <Text style={styles.text}>Seçim Yapınız.</Text>
+    <RadioForm
+          radio_props={radio_props}
+          initial={0}
+          
+          buttonColor={'#fb5b5a'}
+          selectedButtonColor={'#fb5b5a'}
+          buttonInnerColor={'#fb5b5a'}
+          onPress={secim =>setsecim(secim)}
+        />
+        </View>
+     <TouchableOpacity style={styles.devamBtn} onPress={handleSignUp}>
       <Text style={styles.devamText}>DEVAM</Text>
     </TouchableOpacity>
    
@@ -76,9 +108,20 @@ const Kayit = props => {
       paddingRight:60,
       
     },
+    text:{
+      fontSize:20,
+       color:"#26659c",
+       borderBottomColor:"#26659c",
+      borderBottomWidth:3,
+      fontWeight:"bold",},
+    
+    radio:{
+      paddingLeft:60,
+      paddingRight:60,
+    },
     
     logo:{
-      marginTop: 50,
+      marginTop: 20,
       fontWeight:"bold",
       fontSize:20,
       color:"#26659c",
@@ -132,5 +175,6 @@ const Kayit = props => {
   
   });
   
+  
+  export default Kayit;
 
-export default Kayit;

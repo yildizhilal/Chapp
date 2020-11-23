@@ -15,7 +15,7 @@ const Login = props => {
     Firebase.auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => navigation.navigate('StartPage'))
-        .catch(error => console.log(error))
+        .catch(error => alert(error))
 }
 
 
@@ -67,11 +67,11 @@ const styles = StyleSheet.create({
     
   },
   logo:{
-    marginTop: 20,
+    marginTop: "5%",
     fontWeight:"bold",
     fontSize:80,
     color:"#fb5b5a",
-    marginBottom:250,
+    marginBottom:"30%",
     textAlign: "center",
   },
   forgot:{
@@ -83,10 +83,10 @@ const styles = StyleSheet.create({
     width:"80%",
     backgroundColor:"#e3dcce",
     borderRadius:25,
-    height: 50,
-    marginBottom:20,
+    height: "8%",
+    marginBottom:"5%",
     justifyContent:"center",
-    padding:20,
+    padding:"7%",
     alignSelf: 'center',
   },
   inputText:{
@@ -97,11 +97,11 @@ const styles = StyleSheet.create({
     width:"80%",
     backgroundColor:"#5e9ae8",
     borderRadius:25,
-    height:50,
+    height:"8%",
     alignSelf: 'center',
 
-    marginTop:40,
-    marginBottom:10
+    marginTop:"10%",
+    marginBottom:"5%",
   },
   loginText:{
     marginTop: 15,

@@ -3,10 +3,13 @@ import {View, Text, StyleSheet,Button,TextInput, ImageBackground,TouchableOpacit
 import Firebase from '../../config/Firebase';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
+import { useRoute } from '@react-navigation/native';
+
 const Kayit = props => {
 
+  
   const {navigation} = props;
- 
+  const route = useRoute();
 
   const dbh = Firebase.firestore();
 
@@ -18,25 +21,30 @@ const Kayit = props => {
   const [secim, setsecim] = useState('');
 
   handleSignUp = () => {
+    dbh.collection("Users").doc(kullaniciadi).set({
+      KullaniciAdi: kullaniciadi,
+      isim:isim,
+      soyisim:soyisim,
+     })
     Firebase.auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('KayitNext'))
-        .catch(error => console.log(error))
+        .then(() => navigation.navigate('KayitNext',{ caption: kullaniciadi}))
+        .catch(error => alert(error))
 }
+
+
 
 var radio_props = [
   {label: 'Kilomu Koru', value: 0 },
   {label: 'Kilo Ver', value: 1 },
   {label: 'Kilo Al', value: 2 }
 ];
-
-  const [selectedValue, setSelectedValue] = useState("seçim yapınız");
   return (
 
     <ImageBackground style={{flex: 1, opacity: 0.9,}} source={{uri: 'https://cdn.pixabay.com/photo/2019/05/28/10/05/rock-4234793_960_720.jpg'}}>
 <View style={styles.container}>
+
     <Text style={styles.logo}>Bazı bilgilere ihtiyacımız var..:)</Text>
-    
     <View style={styles.inputView} >
       <TextInput  
         style={styles.inputText}
@@ -47,9 +55,8 @@ var radio_props = [
     </View>
     <View style={styles.inputView} >
       <TextInput  
-        secureTextEntry
         style={styles.inputText}
-        placeholder="adınz:" 
+        placeholder="Adınz:" 
         placeholderTextColor="#003f5c"
         onChangeText={isim => setisim(isim)}
         defaultValue={isim}/>
@@ -73,7 +80,7 @@ var radio_props = [
     <View style={styles.inputView} >
       <TextInput  
         style={styles.inputText}
-        placeholder="password:" 
+        placeholder="Password:" 
         placeholderTextColor="#003f5c"
         onChangeText={password => setpassword(password)}
         defaultValue={password}/>
@@ -88,6 +95,8 @@ var radio_props = [
           selectedButtonColor={'#fb5b5a'}
           buttonInnerColor={'#fb5b5a'}
           onPress={secim =>setsecim(secim)}
+
+          
         />
         </View>
      <TouchableOpacity style={styles.devamBtn} onPress={handleSignUp}>
@@ -109,19 +118,19 @@ var radio_props = [
       
     },
     text:{
-      fontSize:20,
+      fontSize:15,
        color:"#26659c",
        borderBottomColor:"#26659c",
       borderBottomWidth:3,
       fontWeight:"bold",},
     
     radio:{
-      paddingLeft:60,
-      paddingRight:60,
+      paddingLeft:"20%",
+      paddingRight:"20%",
     },
     
     logo:{
-      marginTop: 20,
+      marginTop: "2%",
       fontWeight:"bold",
       fontSize:20,
       color:"#26659c",
@@ -130,18 +139,20 @@ var radio_props = [
       alignSelf:'stretch',
       borderBottomColor:"#26659c",
       borderBottomWidth:3,
-      paddingBottom:10,
+      paddingBottom:"5%",
     
     },
   
     inputView:{
-      width:"80%",
+      width:"100%",
       backgroundColor:"#9bb0bf",
-      height:30,
-      marginBottom:20,
+      height:"5%",
+      marginBottom:"2%",
       justifyContent:"center",
       padding:20,
-      alignSelf: 'center',
+      alignSelf: 'center',  
+      borderRadius:25,
+      
     },
     inputText:{
       height:50,
@@ -151,14 +162,14 @@ var radio_props = [
       width:"80%",
       backgroundColor:"#fb5b5a",
       borderRadius:25,
-      height:50,
+      height:"8%",
       alignSelf: 'center',
   
-      marginTop:40,
-      marginBottom:10
+      marginTop:"10%",
+      marginBottom:"10%"
     },
     devamText:{
-      marginTop: 15,
+      marginTop: "8%",
       color:"white",
       textAlign: "center",
     },

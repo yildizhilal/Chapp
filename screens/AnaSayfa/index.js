@@ -1,29 +1,19 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import { useRoute } from '@react-navigation/native';
 
 
-const StartPage = props => {
+const AnaSayfa = props => {
 
   const {navigation} = props;
+  const route = useRoute();
+
+  var kalori=route.params.kal
+    
 
 return (
   <View style={styles.container}>
-     <ImageBackground style={{flex: 1, opacity: 0.87,}} source={{uri: 'https://cdn.pixabay.com/photo/2016/03/01/08/06/harmony-1229886_960_720.jpg'}}>
-      <Text style={styles.text}>HOŞGELDİN</Text>
-      <Text style={styles.textNext}>Hadi başlayalım...</Text>
-    <View style={styles.buttonContainer}>
-      <View style={styles.kayitText}>
-    <Text 
-         onPress={() => navigation.navigate('Kayit')}
-        style={styles.textButton}>KAYIT OL</Text>
-    </View>
-    <View style={styles.kayitText} >
-    <Text
-        onPress={() => navigation.navigate('Login')} 
-        style={styles.textButton}>GİRİŞ YAP</Text>
-    </View>
-    </View>
-    </ImageBackground>
+      <Text style={styles.text}>{route.params.kal}</Text>
   </View>
   
 );
@@ -32,6 +22,7 @@ return (
 const styles = StyleSheet.create({
   container:{
     flex: 1, 
+    backgroundColor:"pink"
     
   
    
@@ -88,4 +79,4 @@ const styles = StyleSheet.create({
 
 
 
-export default StartPage;
+export default AnaSayfa;

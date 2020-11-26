@@ -35,14 +35,13 @@ return (
   </View>
   <View style={styles.inputView} >
     <TextInput  
-      secureTextEntry
       style={styles.inputText}
       placeholder="Password..." 
       placeholderTextColor="#003f5c"
-      onChangeText={password => setpassword(email)}
+      onChangeText={password => setpassword(password)}
         defaultValue={password}/>
   </View>
-  <TouchableOpacity onPress={() => navigation.navigate('Forgot')}>
+  <TouchableOpacity  onPress={() => navigation.navigate('ForgotPassword')}>
     <Text style={styles.forgot}>Forgot Password?</Text>
   </TouchableOpacity>
   <TouchableOpacity style={styles.loginBtn} 
@@ -58,13 +57,9 @@ return (
 </View>
 );
 }
-
-
 const styles = StyleSheet.create({
   container:{
     flex: 1, 
-    
-    
   },
   logo:{
     marginTop: "5%",

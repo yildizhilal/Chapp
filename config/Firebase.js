@@ -53,7 +53,4 @@ try {
   const Firebase= firebase;
 
 
-
-
-
 export default Firebase

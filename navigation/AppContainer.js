@@ -10,6 +10,7 @@ import KayitNextScreen from '../screens/KayitNext';
 import BarkodDataScreen from '../screens/BarkodData';
 import AnaSayfaScreen from '../screens/AnaSayfa';
 import CameraScreen from '../screens/Camera';
+import ForgotPasswordScreen from '../screens/ForgotPassword';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ const AppNavigationContainer = () => {
         <Stack.Screen name="BarkodData" component={BarkodDataScreen} />
         <Stack.Screen name="Camera" component={CameraScreen} />
         <Stack.Screen name="AnaSayfa" component={AnaSayfaScreen} />
+         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );

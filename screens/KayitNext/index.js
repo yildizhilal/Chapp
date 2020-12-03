@@ -30,19 +30,28 @@ const KayitNext = (props) => {
 data_ekle=()=>{
 
 if(cinsiyet===0){
-  var kalori= 22*kilo
+  var kalori= 22*hedef
+  var yag=  (1,6)*hedef
+  var karbonhidrat=(4,8)*hedef
+  var protein=(0,8)*hedef
 }
 else{
-  kalori= 24*kilo 
+  kalori= (24,5)*hedef
+   yag=  (1,6)*hedef
+   karbonhidrat=(4,8)*hedef
+   protein=(0,8)*hedef 
 }
 var cityRef = dbh.collection("Users").doc(doc);
     var setWithMerge = cityRef.set({
-      cinsiyet:cinsiyet,
-      kilo: kilo,
-      boy: boy,
-      yas:yas,
-      hedef:hedef,
-      kalori:kalori,
+      Cinsiyet:cinsiyet,
+      Kilo: kilo,
+      Boy: boy,
+      Yas:yas,
+      Hedef:hedef,
+      Kalori:kalori,
+      Yag:yag,
+      Karbonhidrat:karbonhidrat,
+      Protein:protein,
 }, { merge: true }); 
 
 setx(kalori)

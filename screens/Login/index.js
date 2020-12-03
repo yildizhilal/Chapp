@@ -44,7 +44,7 @@ return (
       onPress={handleLogin}>
     <Text style={styles.loginText}>LOGIN</Text>
   </TouchableOpacity>
-  <TouchableOpacity>
+  <TouchableOpacity onPress={() => navigation.navigate('Kayit')}>
     <Text
      style={styles.loginText}>Sign up</Text>
   </TouchableOpacity>

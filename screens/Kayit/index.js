@@ -23,8 +23,8 @@ const Kayit = props => {
   handleSignUp = () => {
     dbh.collection("Users").doc(email).set({
       KullaniciAdi: kullaniciadi,
-      isim:isim,
-      soyisim:soyisim,
+      Isim:isim,
+      Soyisim:soyisim,
      })
     Firebase.auth()
         .createUserWithEmailAndPassword(email, password)

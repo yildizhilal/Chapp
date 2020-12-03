@@ -23,16 +23,18 @@ const KayitNext = (props) => {
   const [boy, setboy] = useState('');
   const [yas, setyas] = useState('');
   const [hedef, sethedef] = useState('');
-
-data_ekle=()=>{
   
+  const [x, setx] = useState('');
+ 
+  
+data_ekle=()=>{
+
 if(cinsiyet===0){
-  var kalori= 655+(9,6*kilo)+(1,8*boy)-(4,7*yas)
+  var kalori= 22*kilo
 }
 else{
-  kalori= 66+(13,7*kilo)+(5*boy)-(6,8*yas) 
+  kalori= 24*kilo 
 }
-
 var cityRef = dbh.collection("Users").doc(doc);
     var setWithMerge = cityRef.set({
       cinsiyet:cinsiyet,
@@ -42,6 +44,9 @@ var cityRef = dbh.collection("Users").doc(doc);
       hedef:hedef,
       kalori:kalori,
 }, { merge: true }); 
+
+setx(kalori)
+
 }
 
   return (
@@ -96,6 +101,9 @@ var cityRef = dbh.collection("Users").doc(doc);
     </View>
  
     <TouchableOpacity style={styles.devamBtn} onPress={data_ekle}>
+      <Text style={styles.devamText}>KAYDET</Text>
+    </TouchableOpacity>
+    <TouchableOpacity style={styles.devamBtn} onPress={() => navigation.navigate('AnaSayfa',{ belge: x})}>
       <Text style={styles.devamText}>DEVAM</Text>
     </TouchableOpacity>
    

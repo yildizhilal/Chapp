@@ -6,7 +6,6 @@ import Firebase from '../../config/Firebase';
 const Login = props => {
 
   const {navigation} = props;
-
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
 
@@ -14,12 +13,9 @@ const Login = props => {
 
     Firebase.auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('StartPage'))
+        .then(() => navigation.navigate('AnaSayfa',{ caption: email}))
         .catch(error => alert(error))
 }
-
-
-
 return (
 
   <View style={styles.container}>

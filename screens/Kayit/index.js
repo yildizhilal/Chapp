@@ -21,14 +21,14 @@ const Kayit = props => {
   const [secim, setsecim] = useState('');
 
   handleSignUp = () => {
-    dbh.collection("Users").doc(kullaniciadi).set({
+    dbh.collection("Users").doc(email).set({
       KullaniciAdi: kullaniciadi,
       isim:isim,
       soyisim:soyisim,
      })
     Firebase.auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('KayitNext',{ caption: kullaniciadi}))
+        .then(() => navigation.navigate('KayitNext',{ caption: email}))
         .catch(error => alert(error))
 }
 

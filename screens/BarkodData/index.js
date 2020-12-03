@@ -5,6 +5,7 @@ import { CommonActions } from '@react-navigation/native';
 
 const BarkodData = props => {
 
+
   const {navigation} = props;
  
 
@@ -18,11 +19,31 @@ const BarkodData = props => {
   
   const [gram, setgram] = useState('');
 
+
+  handleSignUp = () => {
+    dbh.collection("Barkod").doc('1').set({
+      Kalori: kalori,
+      Isım:isim,
+      Yag:yag,
+      Protein:protein,
+      Karbonhidrat:karbonhidrat,
+     })
+}
+
+
+
+
   return (
 
     <ImageBackground style={{flex: 1, opacity: 0.9,}} source={require('../../assets/kurabiye.jpg')}>
 <View style={styles.container}>
     <Text style={styles.logo}>Bilgiler</Text>
+
+    <TouchableOpacity style={styles.devamBtn} onPress={handleSignUp}>
+      <Text style={styles.devamText}>DEVAM</Text>
+    </TouchableOpacity>
+
+
     <View style={styles.inputView} >
       <TextInput  
         secureTextEntry
@@ -74,9 +95,7 @@ const BarkodData = props => {
         defaultValue={protein}/>
     </View>
     
-     <TouchableOpacity style={styles.devamBtn} onPress={handleSignUp}>
-      <Text style={styles.devamText}>DEVAM</Text>
-    </TouchableOpacity>
+    
    
     </View>
     </ImageBackground>

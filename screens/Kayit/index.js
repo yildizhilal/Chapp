@@ -21,14 +21,14 @@ const Kayit = props => {
   const [secim, setsecim] = useState('');
 
   handleSignUp = () => {
-    dbh.collection("Users").doc(kullaniciadi).set({
+    dbh.collection("Users").doc(email).set({
       KullaniciAdi: kullaniciadi,
-      isim:isim,
-      soyisim:soyisim,
+      Isim:isim,
+      Soyisim:soyisim,
      })
     Firebase.auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('KayitNext',{ caption: kullaniciadi}))
+        .then(() => navigation.navigate('KayitNext',{ caption: email}))
         .catch(error => alert(error))
 }
 
@@ -130,11 +130,11 @@ var radio_props = [
     },
     
     logo:{
-      marginTop: "2%",
+      marginTop: "10%",
       fontWeight:"bold",
       fontSize:20,
       color:"#26659c",
-      marginBottom:0,
+      marginBottom:"5%",
       textAlign: "center",
       alignSelf:'stretch',
       borderBottomColor:"#26659c",
@@ -147,7 +147,7 @@ var radio_props = [
       width:"100%",
       backgroundColor:"#9bb0bf",
       height:"5%",
-      marginBottom:"2%",
+      marginBottom:"5%",
       justifyContent:"center",
       padding:20,
       alignSelf: 'center',  
@@ -188,4 +188,3 @@ var radio_props = [
   
   
   export default Kayit;
-

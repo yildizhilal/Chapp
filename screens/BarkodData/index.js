@@ -5,6 +5,7 @@ import { CommonActions } from '@react-navigation/native';
 
 const BarkodData = props => {
 
+
   const {navigation} = props;
  
 
@@ -18,17 +19,34 @@ const BarkodData = props => {
   
   const [gram, setgram] = useState('');
 
+
+  handleSignUp = () => {
+    dbh.collection("Barkod").doc('1').set({
+      Kalori: kalori,
+      Isım:isim,
+      Yag:yag,
+      Protein:protein,
+      Karbonhidrat:karbonhidrat,
+     })
+}
+
+
+
+
   return (
 
-    <ImageBackground style={{flex: 1, opacity: 0.9,}} source={require('../../assets/kurabiye.jpg')}>
+    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={{uri: 'https://cdn.pixabay.com/photo/2020/11/24/18/19/cat-5773481_960_720.jpg'}}>
 <View style={styles.container}>
-    <Text style={styles.logo}>Bilgiler</Text>
+    <Text style={styles.logo}>Besin Bilgileri</Text>
+
+  
+
     <View style={styles.inputView} >
       <TextInput  
-        secureTextEntry
+        
         style={styles.inputText}
         placeholder="Ürün Adı:" 
-        placeholderTextColor="#003f5c"
+        placeholderTextColor="white"
         onChangeText={isim => setisim(isim)}
         defaultValue={isim}/>
     </View>
@@ -36,7 +54,7 @@ const BarkodData = props => {
       <TextInput  
         style={styles.inputText}
         placeholder="Gram:" 
-        placeholderTextColor="#003f5c"
+        placeholderTextColor="white"
         onChangeText={gram => setgram(gram)}
         defaultValue={gram}/>
     </View>
@@ -44,7 +62,7 @@ const BarkodData = props => {
       <TextInput  
         style={styles.inputText}
         placeholder="Kalori:" 
-        placeholderTextColor="#003f5c"
+        placeholderTextColor="white"
         onChangeText={kalori => setkalori(kalori)}
         defaultValue={kalori}/>
     </View>
@@ -53,7 +71,7 @@ const BarkodData = props => {
       <TextInput  
         style={styles.inputText}
         placeholder="Yağ:" 
-        placeholderTextColor="#003f5c"
+        placeholderTextColor="white"
         onChangeText={yag => setyag(yag)}
         defaultValue={yag}/>
     </View>
@@ -61,7 +79,7 @@ const BarkodData = props => {
       <TextInput  
         style={styles.inputText}
         placeholder="Karbonhidrat:" 
-        placeholderTextColor="#003f5c"
+        placeholderTextColor="white"
         onChangeText={karbonhidrat => setkarbonhidrat(karbonhidrat)}
         defaultValue={karbonhidrat}/>
     </View>
@@ -69,14 +87,15 @@ const BarkodData = props => {
       <TextInput  
         style={styles.inputText}
         placeholder="Protein:" 
-        placeholderTextColor="#003f5c"
+        placeholderTextColor="white"
         onChangeText={protein => setprotein(protein)}
         defaultValue={protein}/>
     </View>
     
-     <TouchableOpacity style={styles.devamBtn} onPress={handleSignUp}>
+    <TouchableOpacity style={styles.devamBtn} onPress={handleSignUp}>
       <Text style={styles.devamText}>DEVAM</Text>
     </TouchableOpacity>
+
    
     </View>
     </ImageBackground>
@@ -88,28 +107,19 @@ const BarkodData = props => {
   const styles = StyleSheet.create({
     container:{
       flex: 1, 
-      paddingLeft:60,
-      paddingRight:60,
+      paddingLeft:40,
+      paddingRight:40,
       
     },
-    text:{
-      fontSize:20,
-       color:"#26659c",
-       borderBottomColor:"#26659c",
-      borderBottomWidth:3,
-      fontWeight:"bold",},
-    
-    radio:{
-      paddingLeft:60,
-      paddingRight:60,
-    },
+ 
+ 
     
     logo:{
-      marginTop: 20,
+      marginTop: "10%",
       fontWeight:"bold",
       fontSize:20,
       color:"#26659c",
-      marginBottom:0,
+      marginBottom:"10%",
       textAlign: "center",
       alignSelf:'stretch',
       borderBottomColor:"#26659c",
@@ -120,33 +130,35 @@ const BarkodData = props => {
   
     inputView:{
       width:"80%",
-      backgroundColor:"#E57373",
-      height:'10%',
-      marginBottom:20,
+      backgroundColor:"#3c4d80",
+      height:'8%',
+      marginBottom:"5%",
       justifyContent:"center",
       padding:20,
       alignSelf: 'center',
-      
+      paddingLeft:40,
+      paddingRight:40,
       borderRadius:25,
     },
     inputText:{
-      height:50,
-      color:"black",
+      height:25,
+      color:"pink",
     },
     devamBtn:{
       width:"80%",
-      backgroundColor:"#E53935",
+      backgroundColor:"#ca9bca",
       borderRadius:25,
       height:'10%',
       alignSelf: 'center',
-  
-      marginTop:40,
-      marginBottom:10
+      marginTop:"5%",
+      marginBottom:"5%",
     },
     devamText:{
-      marginTop: 15,
+      marginTop: "5%",
       color:"white",
       textAlign: "center",
+      fontSize:30,
+      fontWeight:"bold",
     },
 
     pickerStyle:
@@ -163,4 +175,3 @@ const BarkodData = props => {
   
   
   export default BarkodData;
-

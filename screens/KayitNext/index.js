@@ -23,25 +23,39 @@ const KayitNext = (props) => {
   const [boy, setboy] = useState('');
   const [yas, setyas] = useState('');
   const [hedef, sethedef] = useState('');
-
-data_ekle=()=>{
   
+  const [x, setx] = useState('');
+ 
+  
+data_ekle=()=>{
+
 if(cinsiyet===0){
-  var kalori= 655+(9,6*kilo)+(1,8*boy)-(4,7*yas)
+  var kalori= 22*hedef
+  var yag=  (1,6)*hedef
+  var karbonhidrat=(4,8)*hedef
+  var protein=(0,8)*hedef
 }
 else{
-  kalori= 66+(13,7*kilo)+(5*boy)-(6,8*yas) 
+  kalori= (24,5)*hedef
+   yag=  (1,6)*hedef
+   karbonhidrat=(4,8)*hedef
+   protein=(0,8)*hedef 
 }
-
 var cityRef = dbh.collection("Users").doc(doc);
     var setWithMerge = cityRef.set({
-      cinsiyet:cinsiyet,
-      kilo: kilo,
-      boy: boy,
-      yas:yas,
-      hedef:hedef,
-      kalori:kalori,
+      Cinsiyet:cinsiyet,
+      Kilo: kilo,
+      Boy: boy,
+      Yas:yas,
+      Hedef:hedef,
+      Kalori:kalori,
+      Yag:yag,
+      Karbonhidrat:karbonhidrat,
+      Protein:protein,
 }, { merge: true }); 
+
+setx(kalori)
+
 }
 
   return (
@@ -96,6 +110,9 @@ var cityRef = dbh.collection("Users").doc(doc);
     </View>
  
     <TouchableOpacity style={styles.devamBtn} onPress={data_ekle}>
+      <Text style={styles.devamText}>KAYDET</Text>
+    </TouchableOpacity>
+    <TouchableOpacity style={styles.devamBtn} onPress={() => navigation.navigate('AnaSayfa',{ belge: x})}>
       <Text style={styles.devamText}>DEVAM</Text>
     </TouchableOpacity>
    
@@ -109,8 +126,8 @@ var cityRef = dbh.collection("Users").doc(doc);
   const styles = StyleSheet.create({
     container:{
       flex: 1, 
-      paddingLeft:60,
-      paddingRight:60,
+      paddingLeft:30,
+      paddingRight:30,
       
     },
     radio:{
@@ -120,7 +137,7 @@ var cityRef = dbh.collection("Users").doc(doc);
       paddingTop:"10%",
     },
     logo:{
-      marginTop: "2%",
+      marginTop: "4%",
       fontWeight:"bold",
       fontSize:20,
       color:"#26659c",
@@ -154,8 +171,8 @@ var cityRef = dbh.collection("Users").doc(doc);
       height:"8%",
       alignSelf: 'center',
   
-      marginTop:"10%",
-      marginBottom:"10%"
+      marginTop:"5%",
+      marginBottom:"5%"
     },
     devamText:{
       marginTop: "8%",

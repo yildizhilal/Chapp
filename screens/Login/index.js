@@ -1,21 +1,24 @@
 import React, { useState }  from 'react';
 import {View, Text, StyleSheet,Button,TextInput, ImageBackground,TouchableOpacity} from 'react-native';
-
+import AsyncStorage from '@react-native-community/async-storage';
 import Firebase from '../../config/Firebase';
 
 const Login = props => {
 
   const {navigation} = props;
-
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
+
+  
 
   handleLogin = () => {
 
     Firebase.auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('StartPage'))
+        .then(() => navigation.navigate('AnaSayfa',{ caption: email}))
         .catch(error => alert(error))
+
+        
 }
 
 
@@ -48,7 +51,7 @@ return (
       onPress={handleLogin}>
     <Text style={styles.loginText}>LOGIN</Text>
   </TouchableOpacity>
-  <TouchableOpacity>
+  <TouchableOpacity onPress={() => navigation.navigate('Kayit')}>
     <Text
      style={styles.loginText}>Sign up</Text>
   </TouchableOpacity>

@@ -55,6 +55,7 @@ var radio_props = [
     </View>
     <View style={styles.inputView} >
       <TextInput  
+      
         style={styles.inputText}
         placeholder="Adınz:" 
         placeholderTextColor="#003f5c"

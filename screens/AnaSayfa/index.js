@@ -174,13 +174,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderWidth: 4,
     borderColor: "#844b15",
-    
-
   }
-
 
 });
 
 
 
 export default AnaSayfa;
+
+
+

@@ -20,9 +20,6 @@ const Login = props => {
 
         
 }
-
-
-
 return (
 
   <View style={styles.container}>

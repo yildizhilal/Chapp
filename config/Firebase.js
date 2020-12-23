@@ -1,29 +1,25 @@
+import * as firebase from 'firebase';
 
-import firebase from 'firebase'
-
-  import {
-    API_KEY,
-    AUTH_DOMAIN,
-    DATABASE_URL,
-    PROJECT_ID,
-    STORAGE_BUCKET,
-    MESSAGE_SENDER_ID,
-    APP_ID
-} from '@env'
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDy5IJcBg35qUj4qKiXLdo_Mt31Nxk1XAw",
-  authDomain: "chapp-ef3e6.firebaseapp.com",
-  databaseURL: "https://chapp-ef3e6.firebaseio.com",
-  projectId: "chapp-ef3e6",
-  storageBucket: "chapp-ef3e6.appspot.com",
-  messagingSenderId: "1027417791718",
-  appId: "1:1027417791718:web:abb9e02c3aec62a5f42f27",
-  measurementId: "G-QVRDCSVZGF"
-}
+import 'firebase/firestore';
 
 
-// Initialize Firebase
-const Firebase = firebase.initializeApp(firebaseConfig)
+try {
+  firebase.initializeApp({
+    apiKey: "AIzaSyAfhC2zD--KsdCwfutOpVcwKOeTQwCh3sc",
+    authDomain: "h-chapp.firebaseapp.com",
+    projectId: "h-chapp",
+    storageBucket: "h-chapp.appspot.com",
+    messagingSenderId: "912543074598",
+    appId: "1:912543074598:web:84800b5aff3e787d44d9e7",
+    measurementId: "G-8T9SB3KSR6"
+  })
+  } catch (err) {
+  // we skip the “already exists” message which is
+  // not an actual error when we’re hot-reloading
+  if (!/already exists/.test(err.message)) {
+  console.error( err.stack)
+  }}
+  const Firebase= firebase;
+
 
 export default Firebase

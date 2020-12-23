@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import {View, Text, StyleSheet,Button,TextInput, ImageBackground,TouchableOpacity} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import Firebase from '../../config/Firebase';
 
 const Login = props => {
 
   const {navigation} = props;
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
 
-  state={
-    email:"",
-    password:""
-  }
+  
 
+  handleLogin = () => {
+
+    Firebase.auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => navigation.navigate('deneme',{
+          screen: 'AnaSayfa',
+          params: {
+            screen: 'AnaSayfa',
+            params: {
+              caption:email,
+            },
+          },
+        }
+         ))
+        .catch(error => alert(error))
+
+}
 return (
 
   <View style={styles.container}>
@@ -20,25 +38,26 @@ return (
       style={styles.inputText}
       placeholder="Email..." 
       placeholderTextColor="#003f5c"
-      onChangeText={text => this.setState({email:text})}/>
+      onChangeText={email => setemail(email)}
+      defaultValue={email}/>
   </View>
   <View style={styles.inputView} >
     <TextInput  
-      secureTextEntry
       style={styles.inputText}
       placeholder="Password..." 
       placeholderTextColor="#003f5c"
-      onChangeText={text => this.setState({password:text})}/>
+      onChangeText={password => setpassword(password)}
+        defaultValue={password}/>
   </View>
-  <TouchableOpacity onPress={() => navigation.navigate('Forgot')}>
+  <TouchableOpacity  onPress={() => navigation.navigate('ForgotPassword')}>
     <Text style={styles.forgot}>Forgot Password?</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.loginBtn}>
+  <TouchableOpacity style={styles.loginBtn} 
+      onPress={handleLogin}>
     <Text style={styles.loginText}>LOGIN</Text>
   </TouchableOpacity>
-  <TouchableOpacity>
+  <TouchableOpacity onPress={() => navigation.navigate('Kayit')}>
     <Text
-      onPress={() => navigation.navigate('Kayit')}
      style={styles.loginText}>Sign up</Text>
   </TouchableOpacity>
 
@@ -46,20 +65,16 @@ return (
 </View>
 );
 }
-
-
 const styles = StyleSheet.create({
   container:{
     flex: 1, 
-    
-    
   },
   logo:{
-    marginTop: 20,
+    marginTop: "5%",
     fontWeight:"bold",
     fontSize:80,
     color:"#fb5b5a",
-    marginBottom:250,
+    marginBottom:"30%",
     textAlign: "center",
   },
   forgot:{
@@ -71,10 +86,10 @@ const styles = StyleSheet.create({
     width:"80%",
     backgroundColor:"#e3dcce",
     borderRadius:25,
-    height:50,
-    marginBottom:20,
+    height: "8%",
+    marginBottom:"5%",
     justifyContent:"center",
-    padding:20,
+    padding:"7%",
     alignSelf: 'center',
   },
   inputText:{
@@ -85,11 +100,11 @@ const styles = StyleSheet.create({
     width:"80%",
     backgroundColor:"#5e9ae8",
     borderRadius:25,
-    height:50,
+    height:"8%",
     alignSelf: 'center',
 
-    marginTop:40,
-    marginBottom:10
+    marginTop:"10%",
+    marginBottom:"5%",
   },
   loginText:{
     marginTop: 15,

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 
+
 const StartPage = props => {
 
   const {navigation} = props;
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
   
 
   text:{
-    marginTop: 20,
+    marginTop: "20%",
     height:'43%',
     color:"#022040",
       fontWeight: 'bold',

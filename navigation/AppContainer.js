@@ -8,6 +8,8 @@ import LoginScreen from '../screens/Login';
 import KayitNextScreen from '../screens/KayitNext';
 
 import ArkadasPage from '../screens/Arkadas';
+
+import isteklerPage from '../screens/istekler';
 import BarkodDataScreen from '../screens/BarkodData';
 import AnaSayfaScreen from '../screens/AnaSayfa';
 import CameraScreen from '../screens/Camera';
@@ -30,6 +32,8 @@ const AppNavigationContainer = () => {
         <Stack.Screen name="deneme" component={deneme} />
          <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
          <Stack.Screen name="ArkadasPage" component={ArkadasPage} />
+         
+         <Stack.Screen name="isteklerPage" component={isteklerPage} />
 
 
         </Stack.Navigator>

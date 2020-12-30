@@ -4,6 +4,10 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import Firebase from '../../config/Firebase';
 
+
+//disable yellow warnings on EXPO client!
+console.disableYellowBox = true;
+
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);

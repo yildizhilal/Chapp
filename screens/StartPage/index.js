@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 
 
+//disable yellow warnings on EXPO client!
+console.disableYellowBox = true;
+
 const StartPage = props => {
 
   const {navigation} = props;

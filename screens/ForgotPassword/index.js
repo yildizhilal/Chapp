@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { Text, View,TouchableOpacity,TextInput,StyleSheet} from 'react-native'
 import Firebase from '../../config/Firebase';
 
+
+//disable yellow warnings on EXPO client!
+console.disableYellowBox = true;
+
 const ForgotPassword =props=> {
 
     const {navigation} = props;

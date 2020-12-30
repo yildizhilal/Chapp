@@ -3,6 +3,13 @@ import {View, Text, StyleSheet,Button,TextInput, ImageBackground,TouchableOpacit
 import Firebase from '../../config/Firebase';
 import { CommonActions } from '@react-navigation/native';
 
+
+
+//disable yellow warnings on EXPO client!
+console.disableYellowBox = true;
+
+
+
 const BarkodData = props => {
 
 

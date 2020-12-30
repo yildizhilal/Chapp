@@ -1,99 +1,78 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Accelerometer } from 'expo-sensors';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Pedometer } from 'expo-sensors';
 
-const AdimSayar =props => {
-  const {navigation} = props;
-
-
-  const [data, setData] = useState({
-    x: 0,
-    y: 0,
-    z: 0,
-  });
-  const [subscription, setSubscription] = useState(null);
-
-  const _slow = () => {
-    Accelerometer.setUpdateInterval(1000);
+export default class AdimSayar extends React.Component {
+  state = {
+    isPedometerAvailable: 'checking',
+    pastStepCount: 0,
+    currentStepCount: 0,
   };
 
-  const _fast = () => {
-    Accelerometer.setUpdateInterval(16);
-  };
+  componentDidMount() {
+    this._subscribe();
+  }
 
-  const _subscribe = () => {
-    setSubscription(
-      Accelerometer.addListener(accelerometerData => {
-        setData(accelerometerData);
-      })
+  componentWillUnmount() {
+    this._unsubscribe();
+  }
+
+  _subscribe = () => {
+    this._subscription = Pedometer.watchStepCount(result => {
+      this.setState({
+        currentStepCount: result.steps,
+      });
+    });
+
+    Pedometer.isAvailableAsync().then(
+      result => {
+        this.setState({
+          isPedometerAvailable: String(result),
+        });
+      },
+      error => {
+        this.setState({
+          isPedometerAvailable: 'Could not get isPedometerAvailable: ' + error,
+        });
+      }
+    );
+
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - 1);
+    Pedometer.getStepCountAsync(start, end).then(
+      result => {
+        this.setState({ pastStepCount: result.steps });
+      },
+      error => {
+        this.setState({
+          pastStepCount: 'Could not get stepCount: ' + error,
+        });
+      }
     );
   };
 
-  const _unsubscribe = () => {
-    subscription && subscription.remove();
-    setSubscription(null);
+  _unsubscribe = () => {
+    this._subscription && this._subscription.remove();
+    this._subscription = null;
   };
 
-  useEffect(() => {
-    _subscribe();
-    return () => _unsubscribe();
-  }, []);
-
-  const { x, y, z } = data;
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Accelerometer: (in Gs where 1 G = 9.81 m s^-2)</Text>
-      <Text style={styles.text}>
-        x: {round(x)} y: {round(y)} z: {round(z)}
-      </Text>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={subscription ? _unsubscribe : _subscribe} style={styles.button}>
-          <Text>{subscription ? 'On' : 'Off'}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={_slow} style={[styles.button, styles.middleButton]}>
-          <Text>Slow</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={_fast} style={styles.button}>
-          <Text>Fast</Text>
-        </TouchableOpacity>
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}</Text>
+        <Text>Steps taken in the last 24 hours: {this.state.pastStepCount}</Text>
+        <Text>Walk! And watch this go up: {this.state.currentStepCount}</Text>
       </View>
-    </View>
-  );
-}
-
-function round(n) {
-  if (!n) {
-    return 0;
+    );
   }
-  return Math.floor(n * 100) / 100;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 10,
-  },
-  text: {
-    textAlign: 'center',
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
     marginTop: 15,
-  },
-  button: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#eee',
-    padding: 10,
-  },
-  middleButton: {
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderColor: '#ccc',
+    justifyContent: 'center',
   },
 });
-
-export default AdimSayar;

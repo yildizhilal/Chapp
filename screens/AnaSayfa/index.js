@@ -9,6 +9,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import { DrawerActions } from '@react-navigation/native';
 
 
+//disable yellow warnings on EXPO client!
+console.disableYellowBox = true;
+
 const AnaSayfa=({ navigation })=> {
 
 

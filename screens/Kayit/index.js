@@ -5,6 +5,10 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 
 import { useRoute } from '@react-navigation/native';
 
+
+//disable yellow warnings on EXPO client!
+console.disableYellowBox = true;
+
 const Kayit = props => {
 
   

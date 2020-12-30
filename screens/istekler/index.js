@@ -14,6 +14,10 @@ import Firebase from "../../config/Firebase";
 
 import FriendWishList from "../../components/FriendsWishList";
 
+
+//disable yellow warnings on EXPO client!
+console.disableYellowBox = true;
+
 const istekler = () => {
   
   

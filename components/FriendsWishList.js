@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Modal,Image,TextInput, Button} from "react-native";
 //import colors from "./Colors";
-import FriendModal from "./FriendModal"; 
 import {Ionicons} from "../node_modules/@expo/vector-icons";
 import { Entypo } from "../node_modules/@expo/vector-icons";
 import { AntDesign } from "../node_modules/@expo/vector-icons";
 import Firebase from "../config/Firebase";
+
+//disable yellow warnings on EXPO client!
+console.disableYellowBox = true;
 
 const FriendList = ({ list }) => {
   

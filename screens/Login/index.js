@@ -3,6 +3,10 @@ import {View, Text, StyleSheet,Button,TextInput, ImageBackground,TouchableOpacit
 import AsyncStorage from '@react-native-community/async-storage';
 import Firebase from '../../config/Firebase';
 
+
+//disable yellow warnings on EXPO client!
+console.disableYellowBox = true;
+
 const Login = props => {
 
   const {navigation} = props;

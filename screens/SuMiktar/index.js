@@ -37,7 +37,19 @@ const SuMiktar = props => {
 
 const[su,setsu]=useState(250)
 
+const[water,setwater]=useState(0)
+
    su_ekle=()=>{
+
+    var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+    var setWithMerge = SU.set({
+      SuMiktari:su
+  }, { merge: true });
+
+  Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+    .onSnapshot(function(doc) {
+      setwater(doc.data().SuMiktari)
+    });
     setCount(count+ 1);
     setsu((su+250))
     var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
@@ -46,6 +58,10 @@ const[su,setsu]=useState(250)
    }, { merge: true });
 
    }
+
+
+  console.log(water,"water")
+
    
 
   return (
@@ -56,7 +72,7 @@ const[su,setsu]=useState(250)
           <Text style={{fontWeight:"700",fontSize:40, color:"white" ,marginTop:"15%"}}>  SU HAYATTIR!</Text>
       </View>
       <View style={styles.miktar}>
-        <Text style={styles.miktartext}>Bugün Toplam {su-250} Mililitre Su İçtin</Text>
+        <Text style={styles.miktartext}>Bugün Toplam {water} Mililitre Su İçtin</Text>
         <Text style={styles.miktartext}>Tebrikler Böyle Devam Et!</Text>
       </View>
   

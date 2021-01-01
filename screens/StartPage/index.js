@@ -12,8 +12,8 @@ const StartPage = props => {
   const {navigation} = props;
 
   
-  const [email, setemail] = useState('');
-  const [password, setpassword] = useState('');
+  const [email, setemail] = useState('x@x.com');
+  const [password, setpassword] = useState('......');
 
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const StartPage = props => {
       //Setting the value in Text
     );
 
-    if(email!=null && password!=null){
+    if(email!=null && password!=null && email!="x@x.com" && password!="......"){
       Firebase.auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => navigation.navigate('deneme',{

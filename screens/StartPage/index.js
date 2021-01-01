@@ -18,7 +18,6 @@ const StartPage = props => {
 
   useEffect(() => {
 
-
     AsyncStorage.getItem('any_key_here').then(
       (value) =>
         //AsyncStorage returns a promise so adding a callback to get the value
@@ -33,7 +32,7 @@ const StartPage = props => {
       //Setting the value in Text
     );
 
-    if(email!="" && password!=""){
+    if(email!=null && password!=null){
       Firebase.auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => navigation.navigate('deneme',{
@@ -48,9 +47,6 @@ const StartPage = props => {
        ))
       .catch(error => alert(error))
     }
-
-    
-
   });
 
 

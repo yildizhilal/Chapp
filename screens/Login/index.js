@@ -40,13 +40,8 @@ const saveValueFunction = () => {
     AsyncStorage.setItem('any_key_here', email);
     //Setting a data to a AsyncStorage with respect to a key
     setemail('');
-    //Resetting the TextInput
-    alert('Data Saved');
     //alert to confirm
-  } else {
-    alert('Please fill data');
-    //alert for the empty InputText
-  }
+  } 
 
   if (password) {
     //To check the input not empty
@@ -54,11 +49,7 @@ const saveValueFunction = () => {
     //Setting a data to a AsyncStorage with respect to a key
     setpassword('');
     //Resetting the TextInput
-    alert('Data Saved2');
     //alert to confirm
-  } else {
-    alert('Please fill data');
-    //alert for the empty InputText
   }
   handleLogin();
 };

@@ -56,7 +56,7 @@ const[su,setsu]=useState(250)
           <Text style={{fontWeight:"700",fontSize:40, color:"white" ,marginTop:"15%"}}>  SU HAYATTIR!</Text>
       </View>
       <View style={styles.miktar}>
-        <Text style={styles.miktartext}>Bugün Toplam {su} Mililitre Su İçtin</Text>
+        <Text style={styles.miktartext}>Bugün Toplam {su-250} Mililitre Su İçtin</Text>
         <Text style={styles.miktartext}>Tebrikler Böyle Devam Et!</Text>
       </View>
   

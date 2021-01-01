@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import {View, Text, StyleSheet,Button,TextInput, ImageBackground,TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Firebase from '../../config/Firebase';
@@ -12,8 +12,9 @@ const Login = props => {
   const {navigation} = props;
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
+  const [getValue, setGetValue] = useState('');
 
-  
+
 
   handleLogin = () => {
 
@@ -30,8 +31,29 @@ const Login = props => {
         }
          ))
         .catch(error => alert(error))
-
 }
+
+const saveValueFunction = () => {
+  //function to save the value in AsyncStorage
+  if (email) {
+    //To check the input not empty
+    AsyncStorage.setItem('any_key_here', email);
+    //Setting a data to a AsyncStorage with respect to a key
+    setemail('');
+    //alert to confirm
+  } 
+
+  if (password) {
+    //To check the input not empty
+    AsyncStorage.setItem('any_key_here2', password);
+    //Setting a data to a AsyncStorage with respect to a key
+    setpassword('');
+    //Resetting the TextInput
+    //alert to confirm
+  }
+  handleLogin();
+};
+
 return (
 
   <View style={styles.container}>
@@ -57,7 +79,7 @@ return (
     <Text style={styles.forgot}>Forgot Password?</Text>
   </TouchableOpacity>
   <TouchableOpacity style={styles.loginBtn} 
-      onPress={handleLogin}>
+      onPress={()=>saveValueFunction()}>
     <Text style={styles.loginText}>LOGIN</Text>
   </TouchableOpacity>
   <TouchableOpacity onPress={() => navigation.navigate('Kayit')}>

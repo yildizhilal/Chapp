@@ -14,6 +14,7 @@ const SuMiktar = props => {
   const {navigation} = props;
   var date=moment().format('LL');
   var user = Firebase.auth().currentUser.email;
+<<<<<<< HEAD
   var damla;
   
    const[water,setWater]=useState("")
@@ -35,6 +36,11 @@ const SuMiktar = props => {
 
   const [count, setCount] = useState(0);
 
+=======
+
+  const [count, setCount] = useState(0);
+
+>>>>>>> f46151700289c65c5c3748d771ee854823106ef7
   function  _kontrol(n) {
     if (count==n){
       return false;
@@ -74,7 +80,7 @@ const[su,setsu]=useState(250)
           <Text style={{fontWeight:"700",fontSize:40, color:"white" ,marginTop:"15%"}}>  SU HAYATTIR!</Text>
       </View>
       <View style={styles.miktar}>
-        <Text style={styles.miktartext}>Bugün Toplam {water} Mililitre Su İçtin</Text>
+        <Text style={styles.miktartext}>Bugün Toplam {su-250} Mililitre Su İçtin</Text>
         <Text style={styles.miktartext}>Tebrikler Böyle Devam Et!</Text>
       </View>
   

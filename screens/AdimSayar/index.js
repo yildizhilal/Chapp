@@ -1,72 +1,81 @@
-import React from 'react';
+import React,{useState,useEffect}from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Pedometer } from 'expo-sensors';
 
-export default class AdimSayar extends React.Component {
-  state = {
-    isPedometerAvailable: 'checking',
-    pastStepCount: 0,
-    currentStepCount: 0,
-  };
+import Firebase from "../../config/Firebase";
+import moment from "moment";
 
-  componentDidMount() {
-    this._subscribe();
-  }
+const AdimSayar=()=> {
 
-  componentWillUnmount() {
-    this._unsubscribe();
-  }
+  const[pastStepCount,setpastStepCount]=useState(0);
+  
+  const[isPedometerAvailable,setisPedometerAvailable]=useState('checking');
+  const[currentStepCount,setcurrentStepCount]=useState(0);
+  var user = Firebase.auth().currentUser.email;
+  var date=moment().format('LL');
+  var saat=moment().format('LT'); 
+  var SAAT="11:50 PM"
+
 
   _subscribe = () => {
-    this._subscription = Pedometer.watchStepCount(result => {
-      this.setState({
-        currentStepCount: result.steps,
-      });
+    _subscription = Pedometer.watchStepCount(result => {
+        setcurrentStepCount(result.steps)
+       
+  console.log(currentStepCount)
+  console.log("saat",saat)
+  if(saat==SAAT){
+    console.log("eşit")
+  }
+
     });
 
     Pedometer.isAvailableAsync().then(
       result => {
-        this.setState({
-          isPedometerAvailable: String(result),
-        });
+          setisPedometerAvailable(result)
+  
       },
       error => {
-        this.setState({
-          isPedometerAvailable: 'Could not get isPedometerAvailable: ' + error,
-        });
+          setisPedometerAvailable(error)
+
       }
     );
 
-    const end = new Date();
-    const start = new Date();
-    start.setDate(end.getDate() - 1);
-    Pedometer.getStepCountAsync(start, end).then(
-      result => {
-        this.setState({ pastStepCount: result.steps });
-      },
-      error => {
-        this.setState({
-          pastStepCount: 'Could not get stepCount: ' + error,
-        });
-      }
-    );
+   
   };
 
   _unsubscribe = () => {
-    this._subscription && this._subscription.remove();
-    this._subscription = null;
+    _subscription && _subscription.remove();
+    _subscription = null;
+    if(saat==SAAT){
+      var adim= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+      var setWithMerge = adim.set({
+      Adim:currentStepCount
+  }, { merge: true });
+    }
   };
 
-  render() {
+
+
+  
+  useEffect(() => {
+    _subscribe();
+    // returned function will be called on component unmount 
+    return () => {
+      _unsubscribe();
+    }
+  }, [])
+
+
+
+
     return (
       <View style={styles.container}>
-        <Text>Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}</Text>
-        <Text>Steps taken in the last 24 hours: {this.state.pastStepCount}</Text>
-        <Text>Walk! And watch this go up: {this.state.currentStepCount}</Text>
+        <Text>{isPedometerAvailable ? "Hemen adım sayısını arttıralım!" : "Telefonunuz bu özelliği desteklememektedir."} </Text>
+        <Text>Adım Sayısı 👣: {currentStepCount}</Text>
       </View>
     );
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -76,3 +85,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default AdimSayar;

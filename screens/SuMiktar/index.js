@@ -19,22 +19,6 @@ const SuMiktar = props => {
   
    const[water,setWater]=useState("")
 
-  useEffect(() => {
-
-    const subscriber = Firebase.firestore()
-      .collection("Users").doc(user).collection("GunlukTakip").doc(date)
-      .onSnapshot(function(doc) {
-        console.log("Current data: ", doc.data().SuMiktari);
-         setWater( doc.data().SuMiktari)
-
-    });
-
-  
-    // Unsubscribe from events when no longer in use
-    return () => subscriber();
-  }, []);
-
-
 
 
 
@@ -56,7 +40,7 @@ const[su,setsu]=useState(250)
           <Text style={{fontWeight:"700",fontSize:40, color:"white"}}>This is the SuMiktar screen</Text>
       </View>
       <View style={styles.miktar}>
-        <Text style={styles.miktartext}>Bugün Toplam {water} Mililitre Su İçtin</Text>
+        <Text style={styles.miktartext}>Bugün Toplam {su} Mililitre Su İçtin</Text>
         <Text style={styles.miktartext}>Tebrikler Böyle Devam Et!</Text>
       </View>
       <TouchableOpacity style={styles.addList} onPress={()=>su_ekle()}>

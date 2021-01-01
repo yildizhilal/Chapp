@@ -1,5 +1,7 @@
-import React, {Component} from 'react';
+import React, {useEffect,useState} from 'react';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import Firebase from '../../config/Firebase';
 
 
 //disable yellow warnings on EXPO client!
@@ -8,6 +10,58 @@ console.disableYellowBox = true;
 const StartPage = props => {
 
   const {navigation} = props;
+
+  
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
+
+
+  useEffect(() => {
+
+
+    AsyncStorage.getItem('any_key_here').then(
+      (value) =>
+        //AsyncStorage returns a promise so adding a callback to get the value
+      setemail(value)
+      //Setting the value in Text
+    );
+
+    AsyncStorage.getItem('any_key_here2').then(
+      (value) =>
+        //AsyncStorage returns a promise so adding a callback to get the value
+       setpassword(value)
+      //Setting the value in Text
+    );
+
+    if(email!="" && password!=""){
+      Firebase.auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => navigation.navigate('deneme',{
+        screen: 'AnaSayfa',
+        params: {
+          screen: 'AnaSayfa',
+          params: {
+            caption:email,
+          },
+        },
+      }
+       ))
+      .catch(error => alert(error))
+    }
+
+    
+
+  });
+
+
+
+
+
+
+
+
+
+
 
 return (
   <View style={styles.container}>

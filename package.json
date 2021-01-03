@@ -43,7 +43,7 @@
     "react-native-gesture-handler": "^1.9.0",
     "react-native-progress": "^4.1.2",
     "react-native-progress-circle": "^2.1.0",
-    "react-native-qrcode-scanner": "^1.4.1",
+    "react-native-qrcode-scanner": "^1.6.0",
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-scan-barcode": "^3.1.5",

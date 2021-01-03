@@ -14,33 +14,9 @@ const SuMiktar = props => {
   const {navigation} = props;
   var date=moment().format('LL');
   var user = Firebase.auth().currentUser.email;
-<<<<<<< HEAD
-  var damla;
-  
-   const[water,setWater]=useState("")
 
-  useEffect(() => {
-
-    const subscriber = Firebase.firestore()
-      .collection("Users").doc(user).collection("GunlukTakip").doc(date)
-      .onSnapshot(function(doc) {
-        console.log("Current data: ", doc.data().SuMiktari);
-         setWater( doc.data().SuMiktari)
-
-    });
-
-  
-    // Unsubscribe from events when no longer in use
-    return () => subscriber();
-  }, []);
 
   const [count, setCount] = useState(0);
-
-=======
-
-  const [count, setCount] = useState(0);
-
->>>>>>> f46151700289c65c5c3748d771ee854823106ef7
   function  _kontrol(n) {
     if (count==n){
       return false;
@@ -58,28 +34,94 @@ const SuMiktar = props => {
     }
   }
 
+  useEffect(()=>{
+
+    
+        var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+
+        return Firebase.firestore().runTransaction(function(transaction) {
+            // This code may get re-run multiple times if there are conflicts.
+            return transaction.get(sfDocRef).then(function(sfDoc) {
+                if (!sfDoc.exists) {
+                  var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+                  var setWithMerge = SU.set({
+                    SuMiktari:0
+                  }, { merge: true });
+                }
+
+                Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+                .onSnapshot(function(doc) {
+                  setwater(doc.data().SuMiktari)
+                });
+                // Add one person to the city population.
+                // Note: this could be done without a transaction
+                //       by updating the population using FieldValue.increment()
+              // var newPopulation = sfDoc.data().population + 1;
+              
+              //transaction.update(sfDocRef, { population: newPopulation });
+            });
+        }).then(function() {
+            console.log("Transaction successfully committed!");
+        }).catch(function(error) {
+            console.log("Transaction failed: ", error);
+        });
+  },[])
+
+
 
 const[su,setsu]=useState(250)
 
 const[water,setwater]=useState(0)
 
+
    su_ekle=()=>{
 
-    var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
-    var setWithMerge = SU.set({
-      SuMiktari:su
-  }, { merge: true });
+    var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
 
-  Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
-    .onSnapshot(function(doc) {
-      setwater(doc.data().SuMiktari)
+return Firebase.firestore().runTransaction(function(transaction) {
+    // This code may get re-run multiple times if there are conflicts.
+    return transaction.get(sfDocRef).then(function(sfDoc) {
+        if (!sfDoc.exists) {
+          var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+          var setWithMerge = SU.set({
+            SuMiktari:0
+          }, { merge: true });
+        }
+
+        Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+        .onSnapshot(function(doc) {
+          setwater(doc.data().SuMiktari)
+        });
+    
+        setCount(count+ 1);
+        setsu((su+250))
+        var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+         var setWithMerge = SU.set({
+           SuMiktari:su
+       }, { merge: true });
+
+        // Add one person to the city population.
+        // Note: this could be done without a transaction
+        //       by updating the population using FieldValue.increment()
+       // var newPopulation = sfDoc.data().population + 1;
+       
+       //transaction.update(sfDocRef, { population: newPopulation });
     });
-    setCount(count+ 1);
-    setsu((su+250))
-    var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
-     var setWithMerge = SU.set({
-       SuMiktari:su
-   }, { merge: true });
+}).then(function() {
+    console.log("Transaction successfully committed!");
+}).catch(function(error) {
+    console.log("Transaction failed: ", error);
+});
+
+
+
+
+
+
+
+
+
+ 
 
    }
 

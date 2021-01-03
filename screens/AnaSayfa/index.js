@@ -18,9 +18,8 @@ console.disableYellowBox = true;
 
 const AnaSayfa=({ navigation })=> {
 
-
-var kaloriProgress;
   var kal = [];
+  var KAL = [];
   var k = [];
   var y = [];
   var p = [];
@@ -30,6 +29,8 @@ var kaloriProgress;
  //var Email=route.params.belge
    
  const[kalori,setkalori]=useState([])
+ 
+ const[KALORI,setKALORI]=useState([])
  
  const[yag,setY]=useState([])
  const[protein,setP]=useState([])
@@ -61,6 +62,14 @@ var kaloriProgress;
             setY(y)
           });
 
+          Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+          .onSnapshot(function(doc) {
+            KAL.push(doc.data().KALORI)
+            
+          });
+          setKALORI(KAL); 
+
+
 
           const subscriber = Firebase.firestore()
       .collection('Users').doc(user).collection("GunlukTakip").doc(date).collection("food")
@@ -72,7 +81,7 @@ var kaloriProgress;
             key: documentSnapshot.id,
           });
         });
-  
+     
         setFood(food);
       });
 
@@ -87,8 +96,8 @@ var kaloriProgress;
       };
 
     // Unsubscribe from events when no longer in use
-    return () => subscriber();
-
+    return () =>{ subscriber();}
+    
         },[])
 
 
@@ -119,7 +128,7 @@ var kaloriProgress;
 
       <View style={styles.kalori} >
       <ProgressCircle
-            percent={(100*1000)/kalori}
+            percent={((kalori-KALORI)*100)/kalori}
             radius={80}
             borderWidth={10}
             color="#3399FF"
@@ -127,7 +136,7 @@ var kaloriProgress;
             bgColor="#fff"
             style={{}}
         >
-            <Text style={{ fontSize: 18 }}>{kalori} kcal</Text>
+            <Text style={{ fontSize: 18 }}>{kalori-KALORI} kcal</Text>
         </ProgressCircle>
 
     </View>

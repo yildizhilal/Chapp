@@ -45,7 +45,8 @@ const SuMiktar = props => {
                 if (!sfDoc.exists) {
                   var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
                   var setWithMerge = SU.set({
-                    SuMiktari:0
+                    SuMiktari:0,
+                    KALLORI:0
                   }, { merge: true });
                 }
 
@@ -53,12 +54,6 @@ const SuMiktar = props => {
                 .onSnapshot(function(doc) {
                   setwater(doc.data().SuMiktari)
                 });
-                // Add one person to the city population.
-                // Note: this could be done without a transaction
-                //       by updating the population using FieldValue.increment()
-              // var newPopulation = sfDoc.data().population + 1;
-              
-              //transaction.update(sfDocRef, { population: newPopulation });
             });
         }).then(function() {
             console.log("Transaction successfully committed!");
@@ -79,7 +74,6 @@ const[water,setwater]=useState(0)
     var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
 
 return Firebase.firestore().runTransaction(function(transaction) {
-    // This code may get re-run multiple times if there are conflicts.
     return transaction.get(sfDocRef).then(function(sfDoc) {
         if (!sfDoc.exists) {
           var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)

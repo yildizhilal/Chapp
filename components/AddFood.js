@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import {
   View,
   Text,
@@ -13,11 +13,14 @@ import Firebase from "../config/Firebase";
 import { AntDesign } from "../node_modules/@expo/vector-icons";
 
 import moment from "moment";
+import SuMiktar from "../screens/SuMiktar";
 console.disableYellowBox = true;
 
 const AddFood = () => {
 
   const [isim, setisim] = useState("");
+  
+  const [KAL, setKAL] = useState(0);
   
   const [kalori, setkalori] = useState("");
   const [gram, setgram] = useState(0);
@@ -25,12 +28,75 @@ const AddFood = () => {
   
   var date=moment().format('LL');
 
-  createFlowersList = () => {
 
-    Firebase.firestore().collection("Food").where("name", "==", isim)
+ /* useEffect(()=>{
+
+    
+    var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+
+    return Firebase.firestore().runTransaction(function(transaction) {
+        // This code may get re-run multiple times if there are conflicts.
+        return transaction.get(sfDocRef).then(function(sfDoc) {
+            if (!sfDoc.exists) {
+              var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+              var k = SU.set({
+                KALORI:0
+              }, { merge: true });
+            }
+      
+        });
+    }).then(function() {
+        console.log("Transaction successfully committed!");
+    }).catch(function(error) {
+        console.log("Transaction failed: ", error);
+    });
+},[])*/
+
+
+  createFlowersList = () => {
+    var nn=isim.toUpperCase()
+    const res = nn.replace(/ /g, '')
+
+
+    Firebase.firestore().collection("Food").where("name", "==", res)
     .onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) { 
-            var Foods = Firebase.firestore().collection('Users').doc(user).collection("GunlukTakip").doc(date).collection("food").doc(isim)
+            var Foods = Firebase.firestore().collection('Users').doc(user).collection("GunlukTakip").doc(date).collection("food").doc(res)
+          
+
+            var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+              Firebase.firestore().runTransaction(function(transaction) {
+                  return transaction.get(sfDocRef).then(function(sfDoc) {
+                      if (!sfDoc.exists) {
+                        var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+                        var k = SU.set({
+                          KALORI:0,
+                          SuMiktari:0
+                        }, { merge: true });
+                      }
+                  
+                      var newk = sfDoc.data().KALORI +((doc.data().Kalori*gram)/100);
+                      if (newk <= 1000000) {
+                          transaction.update(sfDocRef, { KALORI: newk });
+                          return newk;
+                      } else {
+                          return Promise.reject("Sorry! Population is too big.");
+                      }
+                  });
+              }).then(function(newPopulation) {
+                  console.log("Population increased to ", newPopulation);
+              }).catch(function(err) {
+                  // This will be an "population is too big" error.
+                  console.error(err);
+              });
+
+
+
+
+
+
+
+
             var setWithMerge = Foods.set({
                 name: doc.data().name,
                 Kalori:((doc.data().Kalori*gram)/100),
@@ -40,7 +106,6 @@ const AddFood = () => {
             }, { merge: true });
         });
     });
-
 
     closeModal();
   };

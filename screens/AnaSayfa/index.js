@@ -18,8 +18,12 @@ console.disableYellowBox = true;
 
 const AnaSayfa=({ navigation })=> {
 
+  var deneme=[];
   var kal = [];
   var KAL = [];
+  var KAR= [];
+  var PRO = [];
+  var YAG = [];
   var k = [];
   var y = [];
   var p = [];
@@ -31,6 +35,15 @@ const AnaSayfa=({ navigation })=> {
  const[kalori,setkalori]=useState([])
  
  const[KALORI,setKALORI]=useState([])
+ 
+ const[KARBONHIDRAT,setKAR]=useState([])
+ 
+ const[PROTEIN,setPRO]=useState([])
+ 
+ const[YA,setYAG]=useState([])
+ 
+ const[d,setd]=useState([])
+ const[dd,setdd]=useState([])
  
  const[yag,setY]=useState([])
  const[protein,setP]=useState([])
@@ -62,12 +75,35 @@ const AnaSayfa=({ navigation })=> {
             setY(y)
           });
 
+          var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+          Firebase.firestore().runTransaction(function(transaction) {
+              return transaction.get(sfDocRef).then(function(sfDoc) {
+                  if (!sfDoc.exists) {
+                    var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+                    var k = SU.set({
+                      YAG:0,
+                      KARBONHIDRAT:0,
+                      PROTEIN:0,
+                      KALORI:0,
+                      SuMiktari:0
+                    }, { merge: true });
+                  }
+
+              });
+            })
+
           Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
           .onSnapshot(function(doc) {
             KAL.push(doc.data().KALORI)
+            KAR.push(doc.data().KARBONHIDRAT)
+            YAG.push(doc.data().YAG)
+            PRO.push(doc.data().PROTEIN)
             
           });
           setKALORI(KAL); 
+          setPRO(PRO); 
+          setKAR(KAR); 
+          setYAG(YAG); 
 
 
 
@@ -85,7 +121,8 @@ const AnaSayfa=({ navigation })=> {
         setFood(food);
       });
 
-
+      deneme=(kalori-KALORI);
+      setd(deneme)
 
       toggleAddFlowersModal = () => {
         setFlowers(true);
@@ -105,7 +142,6 @@ const AnaSayfa=({ navigation })=> {
           return <FoodList list={list} />;
         };
       
-
 
 
   return (
@@ -128,7 +164,7 @@ const AnaSayfa=({ navigation })=> {
 
       <View style={styles.kalori} >
       <ProgressCircle
-            percent={((kalori-KALORI)*100)/kalori}
+            percent={(KALORI*100)/kalori}
             radius={80}
             borderWidth={10}
             color="#3399FF"
@@ -136,27 +172,25 @@ const AnaSayfa=({ navigation })=> {
             bgColor="#fff"
             style={{}}
         >
-            <Text style={{ fontSize: 18 }}>{kalori-KALORI} kcal</Text>
+            <Text style={{ fontSize: 18 }}>{d} kcal</Text>
         </ProgressCircle>
 
     </View>
     <View style={styles.controlSpace}>
         <View style={styles.yagView} >
         <Text style={{ fontWeight:"bold",textAlign: 'center' , fontSize:10}}>YAĞ</Text>
-            <Progress.Bar progress={(100*75)/yag} width={100} height={20}  />
+            <Progress.Bar progress={1} width={100} height={20}  />
          </View>
          
         <View style={styles.proView} >
         <Text style={{  opacity: 0.8,fontWeight:"bold",textAlign: 'center' , fontSize:10}}>PROTEİN</Text>
-        <Progress.Bar progress={(100*75)/protein} width={100} height={20} />
+        <Progress.Bar progress={1} width={100} height={20} />
         </View>
         <View style={styles.karView} >
         <Text style={{  opacity: 0.8,fontWeight:"bold",textAlign: 'center' , fontSize:11, fontSize:10}}>KARBON</Text>
-        <Progress.Bar progress={(100*5)/karbonhidrat} width={100} height={20}  />
+        <Progress.Bar progress={1} width={100} height={20}  />
         </View>
     </View>
-
-   
 
 
     <View style={{paddingRight:"5%",flex:1}}>
@@ -165,6 +199,7 @@ const AnaSayfa=({ navigation })=> {
       <Text style={styles.yemekText}>BESİN EKLE</Text>
      
     </TouchableOpacity>
+    
 
     <View style={styles.listArea}>
         

@@ -46,7 +46,10 @@ const SuMiktar = props => {
                   var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
                   var setWithMerge = SU.set({
                     SuMiktari:0,
-                    KALLORI:0
+                    KALORI:0,
+                    YAG:0,
+                    KARBONHIDRAT:0,
+                    PROTEİN:0,
                   }, { merge: true });
                 }
 

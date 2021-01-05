@@ -10,20 +10,12 @@ import Firebase from "../config/Firebase";
 console.disableYellowBox = true;
 
 const FoodList = ({ list }) => {
-  const [showListVisible, setShowListVisible] = useState(false);
   
-  const [checkbutton, setCheck] = useState(false);
-  const [mynotes, setMyNotes] = useState("");
-
-  
-  var user = Firebase.auth().currentUser.email;
-
-
   return (
+   
     <View>
-      
       <View
-        style={[styles.listContainer, { backgroundColor: list.color }]}
+        style={[styles.listContainer]}
       >
         <View style={{flexDirection:"row", backgroundColor:"orange"}}>
          

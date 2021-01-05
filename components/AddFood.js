@@ -6,20 +6,22 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   TextInput,
+  Modal
 } from "react-native";
 import { colors } from "react-native-elements";
 import { FlatList } from "react-native-gesture-handler";
 import Firebase from "../config/Firebase";
 import { AntDesign } from "../node_modules/@expo/vector-icons";
+import Camera from "../components/Camera";
 
 import moment from "moment";
-import SuMiktar from "../screens/SuMiktar";
 console.disableYellowBox = true;
 
 const AddFood = () => {
 
   const [isim, setisim] = useState("");
   
+  const [addFlowersVisible, setFlowers] = useState(false);   
   const [KAL, setKAL] = useState(0);
   
   const [kalori, setkalori] = useState("");
@@ -29,28 +31,21 @@ const AddFood = () => {
   var date=moment().format('LL');
 
 
- /* useEffect(()=>{
+  useEffect(()=>{
 
-    
-    var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+    toggleAddFlowersModal = () => {
+      setFlowers(true);
+    };
+  
+    closeModal = () => {
+      setFlowers(false);
+    };
 
-    return Firebase.firestore().runTransaction(function(transaction) {
-        // This code may get re-run multiple times if there are conflicts.
-        return transaction.get(sfDocRef).then(function(sfDoc) {
-            if (!sfDoc.exists) {
-              var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
-              var k = SU.set({
-                KALORI:0
-              }, { merge: true });
-            }
-      
-        });
-    }).then(function() {
-        console.log("Transaction successfully committed!");
-    }).catch(function(error) {
-        console.log("Transaction failed: ", error);
-    });
-},[])*/
+  })
+
+
+
+
 
 
   createFlowersList = () => {
@@ -70,32 +65,32 @@ const AddFood = () => {
                       if (!sfDoc.exists) {
                         var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
                         var k = SU.set({
+                          YAG:0,
+                          KARBONHIDRAT:0,
+                          PROTEİN:0,
                           KALORI:0,
                           SuMiktari:0
                         }, { merge: true });
                       }
                   
                       var newk = sfDoc.data().KALORI +((doc.data().Kalori*gram)/100);
-                      if (newk <= 1000000) {
+                      var newK = sfDoc.data().KARBONHIDRAT +((doc.data().Karbonhidrat*gram)/100);
+                      var newY = sfDoc.data().YAG +((doc.data().Yag*gram)/100);
+                      var newP = sfDoc.data().PROTEIN +((doc.data().Protein*gram)/100);
+                    
                           transaction.update(sfDocRef, { KALORI: newk });
-                          return newk;
-                      } else {
-                          return Promise.reject("Sorry! Population is too big.");
-                      }
+                          transaction.update(sfDocRef, { YAG: newY });
+                          transaction.update(sfDocRef, { KARBONHIDRAT: newK });
+                          transaction.update(sfDocRef, { PROTEIN: newP });
+                          return {newk,newK,newP,newY};
+
                   });
-              }).then(function(newPopulation) {
-                  console.log("Population increased to ", newPopulation);
+              }).then(function(newk) {
+                  console.log("Population increased to ", newk);
               }).catch(function(err) {
                   // This will be an "population is too big" error.
                   console.error(err);
               });
-
-
-
-
-
-
-
 
             var setWithMerge = Foods.set({
                 name: doc.data().name,
@@ -111,14 +106,25 @@ const AddFood = () => {
   };
 
 
-
   return (
+
+
+    
     <KeyboardAvoidingView style={styles.container} behavior="padding">
+
+           <Modal
+            animationType="slide"
+            visible={addFlowersVisible}
+            onRequestClose={()=>toggleAddFlowersModal()}
+          >
+            <Camera  />
+          </Modal>
+
       <TouchableOpacity
         style={{ position: "absolute", top: 64, right: 32 }}
         onPress={closeModal}
       >
-        <AntDesign name="close" size={24} color={colors.black} />
+        <AntDesign name="close" size={24} color="black" />
       </TouchableOpacity>
 
       <View style={{ alignSelf: "stretch", marginHorizonal: 32 }}>
@@ -136,6 +142,28 @@ const AddFood = () => {
           onChangeText={(gram) => setgram(gram)}
         />
 </View>
+<TouchableOpacity
+          style={{
+            backgroundColor:"orange",
+            marginTop: 24,
+            height: 50,
+            borderRadius: 6,
+            alignItems: "center",
+            justifyContent: "space-around",
+            alignSelf: "center",
+            width: 310,
+          }}
+          onPress={()=>toggleAddFlowersModal()}
+        >
+          <View style={{flexDirection:"row"}}>
+          <Text style={{  color: "black", fontWeight: "700", fontSize: 20 }} >
+           Barkod ile Ekleme Yap     
+          </Text>
+          <AntDesign name="barcode" size={40} color="black" />
+          </View>
+        </TouchableOpacity>
+
+
 
         <TouchableOpacity
           style={{
@@ -148,7 +176,7 @@ const AddFood = () => {
             alignSelf: "center",
             width: 310,
           }}
-          onPress={createFlowersList}
+          onPress={()=>createFlowersList()}
         >
           <Text style={{  color: "black", fontWeight: "700", fontSize: 25 }} >
             Ekle
@@ -178,7 +206,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: "800",
-    color: colors.black,
+    color: "black",
     alignSelf: "center",
     marginBottom: 16,
   },

@@ -21,7 +21,7 @@ const AddFood = () => {
 
   const [isim, setisim] = useState("");
   
-  const [addFlowersVisible, setFlowers] = useState(false);   
+  const [addBarkod, setBarkod] = useState(false);   
   const [KAL, setKAL] = useState(0);
   
   const [kalori, setkalori] = useState("");
@@ -33,20 +33,15 @@ const AddFood = () => {
 
   useEffect(()=>{
 
-    toggleAddFlowersModal = () => {
-      setFlowers(true);
+    toggleAddBarkod = () => {
+      setBarkod(true);
     };
   
-    closeModal = () => {
-      setFlowers(false);
+    closeBarkod = () => {
+      setBarkod(false);
     };
 
-  })
-
-
-
-
-
+  },[])
 
   createFlowersList = () => {
     var nn=isim.toUpperCase()
@@ -114,8 +109,8 @@ const AddFood = () => {
 
            <Modal
             animationType="slide"
-            visible={addFlowersVisible}
-            onRequestClose={()=>toggleAddFlowersModal()}
+            visible={addBarkod}
+            onRequestClose={()=>toggleAddBarkod()}
           >
             <Camera  />
           </Modal>
@@ -153,7 +148,7 @@ const AddFood = () => {
             alignSelf: "center",
             width: 310,
           }}
-          onPress={()=>toggleAddFlowersModal()}
+          onPress={()=>toggleAddBarkod()}
         >
           <View style={{flexDirection:"row"}}>
           <Text style={{  color: "black", fontWeight: "700", fontSize: 20 }} >

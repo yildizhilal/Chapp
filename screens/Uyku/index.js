@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import { View, StyleSheet,ImageBackground,Button,Text } from "react-native";
+import React,{useState, useEffect} from "react";
+import { View, StyleSheet,ImageBackground,Button,Text,Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Firebase from "../../config/Firebase";
@@ -66,6 +66,40 @@ const kontrol=()=>{
   }
   return deger;
 }
+const[saat,setSaat]=useState(0)
+useEffect(()=>{
+    
+  var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+
+  return Firebase.firestore().runTransaction(function(transaction) {
+      // This code may get re-run multiple times if there are conflicts.
+      return transaction.get(sfDocRef).then(function(sfDoc) {
+          if (!sfDoc.exists) {
+            var Uyku= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+            var setWithMerge = Uyku.set({
+              SuMiktari:0,
+              UykuSaati:0,
+              KALORI:0,
+              YAG:0,
+              KARBONHIDRAT:0,
+              PROTEİN:0,
+            }, { merge: true });
+          }
+
+          Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
+          .onSnapshot(function(doc) {
+            setSaat(doc.data().UykuSaati)
+          });
+      });
+  }).then(function() {
+      console.log("Transaction successfully committed!");
+  }).catch(function(error) {
+      console.log("Transaction failed: ", error);
+  });
+
+
+},[])
+
   const uykuEkle =()=>{
  
     var sure=()=>kontrol();
@@ -77,12 +111,23 @@ const kontrol=()=>{
 
    }
 
+
   return (
-    <ImageBackground style={{flex: 1, opacity: 0.9,}} source={{uri: 'https://cdn.pixabay.com/photo/2019/03/18/21/12/dream-catcher-4064206_960_720.jpg'}}>
+    <ImageBackground style={{flex: 1, opacity: 0.9,}} source={require('../../assets/k.png')}>
     <View style={styles.center}>
       <View style={styles.design}>
       <View style={{alignContent:"space-around"}}>
-        <Button onPress={showTimepicker} title="SAAT KAÇTA UYUDUNUZ?" />
+      <TouchableOpacity  onPress={showTimepicker1}  >
+        <Text style={styles.logo1}>Kaçta  uyudunuz?</Text>
+
+        <Image
+                source={{
+                  uri:
+                    'https://cdn.pixabay.com/photo/2016/11/23/01/27/night-1851685_960_720.png',
+                }}
+                style={styles.buttonImageIconStyle}
+              />
+        </TouchableOpacity>
       </View>
       {show && (
         <DateTimePicker
@@ -95,8 +140,19 @@ const kontrol=()=>{
         />
       )}
 
-      <View style={{alignContent:"space-around"}}>
-        <Button onPress={showTimepicker1} title="SAAT KAÇTA UYANDINIZ?" />
+      <View style={{alignContent:"space-around",
+    left:"30%"}}>
+        <TouchableOpacity  onPress={showTimepicker1}  >
+        <Text style={styles.logo1}>Kaçta uyandınız?</Text>
+
+        <Image
+                source={{
+                  uri:
+                    'https://cdn.pixabay.com/photo/2016/11/21/03/56/landscape-1844227_960_720.png',
+                }}
+                style={styles.buttonImageIconStyle}
+              />
+        </TouchableOpacity>
       </View>
       {show1 && (
         <DateTimePicker
@@ -110,40 +166,102 @@ const kontrol=()=>{
       )}
       </View>
     <TouchableOpacity style={styles.kaydetBtn} onPress={()=>uykuEkle()}>
+  
       <Text style={styles.kaydetBtntxt}>KAYDET</Text>
     </TouchableOpacity>
-
+    <View style={styles.uykuView}>
+    <Text style={styles.logo}>Bugün Toplam {saat} saat uyudun</Text>
+    </View>
     </View>
     </ImageBackground>
   );
 };
 
+
 const styles = StyleSheet.create({
   center: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+  },
+  logo:{
+    marginTop: "10%",
+    fontWeight:"bold",
+    fontSize:20,
+    color:"#634d4d",
+    marginBottom:"5%",
     textAlign: "center",
+    alignSelf:'stretch',
+    borderBottomColor:"#634d4d",
+    borderBottomWidth:3,
+    paddingBottom:"5%",
+  
+  },
+  logo1:{
+    fontWeight:"bold",
+    fontSize:20,
+    color:"#634d4d",
+    marginBottom:"5%",
+    textAlign: "center",
+    alignSelf:'stretch',
+    borderBottomColor:"#634d4d",
+    borderBottomWidth:3,
+    paddingBottom:"2%",
+  
+  },
+  buttonImageIconStyle: {
+    padding: 65,
+    resizeMode: 'stretch',
+    alignItems: 'center',
+  },
+  uykuView:{
+    width:"90%",
+    backgroundColor:"#d3af97",
+    height:"10%",
+    marginBottom:"25%",
+    justifyContent:"center",
+    padding:20,
+    alignSelf: 'center',  
+    
   },
   kaydetBtntxt:{
-    marginTop: "8%",
-    color:"white",
+    marginTop: 15,
+    color:"#634d4d",
     textAlign: "center",
+    fontWeight:"bold",
+    fontSize:40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  miktartext:{
+    fontSize:21,
+    alignItems: "center",
+    justifyContent: "center",
+    color:"black",
+    marginBottom:"4%",
+    
   },
   kaydetBtn:{
     width:"50%",
-    backgroundColor:"#5e9ae8",
+    backgroundColor:"#d3af97",
     borderRadius:25,
-    height:"15%",
+    height:"30%",
     alignSelf:'center',
-
     marginTop:"10%",
-    marginBottom:"10%"
   },
   design:{
     flexDirection:'row',
-    alignContent:"space-between",
-    
+    alignContent:"space-around",
+    alignItems:"center",
+    right:"3%",
+    left:"3%"
+   
+  },
+  design2:{
+    flexDirection:'row',
+    alignContent:"space-around",
+    alignItems:"center",
+   
+   
   }
   
 });

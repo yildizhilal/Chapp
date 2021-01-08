@@ -8,6 +8,7 @@ import {ActivityIndicator,
   Modal,
   TextInput,
   SafeAreaView,
+  ImageBackground
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Firebase from "../../config/Firebase";
@@ -92,8 +93,9 @@ const Arkadas = () => {
 
 
   return (
+    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/k.png')}>
+
     <View style={styles.container}>
-      
       <Text style={styles.title}>Arkadaşlar</Text>
 
       <View style={[styles.buttonArea,{flexDirection:"row"}]}>
@@ -106,7 +108,7 @@ const Arkadas = () => {
           style={styles.addList}
           onPress={()=>Arkadas_ekle()}
         >
-          <AntDesign name="plus" size={16} color="green" />
+          <AntDesign name="plus" size={20} color="#2f5a93" />
         </TouchableOpacity>
       </View>
 
@@ -121,16 +123,14 @@ const Arkadas = () => {
     />
   
       </View>
-
-    
     </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "pink",
     alignItems: "center",
   },
   listArea: {
@@ -140,31 +140,41 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 38,
     fontWeight: "bold",
-    color:"green",
+    color:"#2f5a93",
     paddingTop: 20,
+    borderBottomColor:"#2f5a93",
+    borderBottomWidth:5,
+    paddingBottom:"3%",
+  
   },
   buttonArea: {
     borderWidth:StyleSheet.hairlineWidth,
-    borderWidth:2,
-    borderColor: "white",
+    marginTop:"8%",
+    borderWidth:4,
+    borderColor: "#634d4d",
     borderRadius:6,
     paddingBottom: 10,
     width:"85%"
   },
   addList: {
     borderWidth: 2,
-    borderColor: "white",
+    borderColor: "#634d4d",
     borderRadius: 4,
     padding: 5,
     marginTop:"2%",
     paddingHorizontal:"3%",
-    marginLeft:"60%"
+    marginLeft:"50%"
   },
   add: {
     color: "blue",
     fontWeight: "600",
     fontSize: 14,
     marginTop: 8,
+  },
+  input:{
+    fontSize:20,
+    paddingLeft:10,
+    color:"#2f5a93",
   },
 });
 

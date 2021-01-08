@@ -11,7 +11,11 @@
     "@babel/runtime": "^7.12.1",
     "@react-native-async-storage/async-storage": "^1.13.2",
     "@react-native-community/async-storage": "^1.12.1",
+<<<<<<< HEAD
     "@react-native-community/datetimepicker": "^3.0.9",
+=======
+    "@react-native-community/datetimepicker": "github:react-native-community/datetimepicker",
+>>>>>>> 2feaa57d893002c5b65fe0a925dec6755630caf6
     "@react-native-community/google-signin": "^5.0.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-firebase/app": "^10.0.0",

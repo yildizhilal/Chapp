@@ -12,7 +12,6 @@ import ArkadasPage from '../screens/Arkadas';
 import isteklerPage from '../screens/istekler';
 import BarkodDataScreen from '../screens/BarkodData';
 import AnaSayfaScreen from '../screens/AnaSayfa';
-import CameraScreen from '../screens/Camera';
 import ForgotPasswordScreen from '../screens/ForgotPassword';
 
 import deneme from '../screens/Deneme';
@@ -28,7 +27,6 @@ const AppNavigationContainer = () => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="KayitNext" component={KayitNextScreen} />
         <Stack.Screen name="BarkodData" component={BarkodDataScreen} />
-        <Stack.Screen name="Camera" component={CameraScreen} />
         <Stack.Screen name="deneme" component={deneme} />
          <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
          <Stack.Screen name="ArkadasPage" component={ArkadasPage} />

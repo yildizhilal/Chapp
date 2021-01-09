@@ -57,6 +57,7 @@ const AnaSayfa=({ navigation })=> {
  
  var date=moment().format('LL');
 
+ 
         useEffect(() => {
           dbh.collection("Users")
           .onSnapshot(function(querySnapshot) {

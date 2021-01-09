@@ -8,6 +8,7 @@ import {ActivityIndicator,
   Modal,
   TextInput,
   SafeAreaView,
+  ImageBackground,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Firebase from "../../config/Firebase";
@@ -57,9 +58,10 @@ const istekler = () => {
   };
 
   return (
+    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/k.png')}>
     <View style={styles.container}>
       
-      <Text style={styles.title}>Arkadaşlar</Text>
+      <Text style={styles.title}>Arkadaşlık İstekleri</Text>
 
       <View style={styles.listArea}>
         
@@ -70,18 +72,15 @@ const istekler = () => {
       renderItem={({ item }) => renderList(item)}
     />
   
-  
       </View>
-
-    
     </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "pink",
     alignItems: "center",
   },
   listArea: {
@@ -91,13 +90,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 38,
     fontWeight: "bold",
-    color:"green",
+    color:"#2f5a93",
     paddingTop: 20,
+    borderBottomColor:"#2f5a93",
+    borderBottomWidth:5,
+    paddingBottom:"3%",
   },
   buttonArea: {
     borderWidth:StyleSheet.hairlineWidth,
-    borderWidth:2,
-    borderColor: "white",
+    borderWidth:4,
+    borderColor: "#634d4d",
     borderRadius:6,
     paddingBottom: 10,
     width:"85%"

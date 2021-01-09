@@ -18,27 +18,27 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
   return (
-      <Tab.Navigator>
+      <Tab.Navigator tabBarOptions={{style:{backgroundColor:"#b2cee6"}}} >
         <Tab.Screen name="AnaSayfa" component={AnaSayfa}  options={{
           tabBarLabel: 'AnaSayfa',
           tabBarIcon: ({ color, size }) => (
             <Icon
             name='home'
             type='feather'
-            color='#517fa4'
+            color='#634d4d'
           />
           ),
         }} />
         <Tab.Screen name="SuMiktar" component={SuMiktar} options={{
           tabBarLabel: 'SuMiktar',
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="drop" size={24} color="#517fa4" />
+            <Entypo name="drop" size={24} color="#634d4d" />
           ),
         }}/>
        <Tab.Screen name="AdimSayar" component={AdimSayar}  options={{
           tabBarLabel: 'AdimSayar',
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="running" size={24} color="#517fa4" />
+            <FontAwesome5 name="running" size={24} color="#634d4d" />
           ),
         }} />
        <Tab.Screen name="Uyku" component={Uyku}  options={{
@@ -47,7 +47,7 @@ export default function TabNavigator() {
             <Icon
             name='moon'
             type='feather'
-            color='#517fa4'
+            color='#634d4d'
           />
           ),
         }}/>

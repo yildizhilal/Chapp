@@ -86,7 +86,8 @@ const AnaSayfa=({ navigation })=> {
                       KARBONHIDRAT:0,
                       PROTEIN:0,
                       KALORI:0,
-                      SuMiktari:0
+                      SuMiktari:0,
+                      UykuSaati:0,
                     }, { merge: true });
                   }
 
@@ -147,7 +148,8 @@ const AnaSayfa=({ navigation })=> {
 
   return (
     <View style={styles.container}>
-        <ImageBackground style={{ flex:1,}} source={{uri: 'https://cdn.pixabay.com/photo/2016/11/29/02/35/blue-1866881_960_720.jpg'}}>
+        <ImageBackground style={{ flex:1,}} source={require('../../assets/k.png')}>
+          
 
     <View style={{alignItems:"flex-start",top:10,left:15}}>
     <FontAwesome name="bars" size={30} color="black" onPress={()=>navigation.dispatch(DrawerActions.openDrawer())} />

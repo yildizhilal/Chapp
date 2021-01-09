@@ -149,7 +149,7 @@ console.disableYellowBox = true;
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        backgroundColor:"pink"
+        backgroundColor:"#f1e1c7"
       }}>
 
 

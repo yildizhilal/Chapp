@@ -17,14 +17,6 @@ const SuMiktar = props => {
 
 
   const [count, setCount] = useState(0);
-  
-  function _su(){
-  var waterdeger;
-  waterdeger=water/250;
-  setCount(waterdeger);
-
-  }
-
   function  _kontrol(n) {
     if (count==n){
       return false;
@@ -43,6 +35,7 @@ const SuMiktar = props => {
   }
 
   useEffect(()=>{
+
     
         var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
 
@@ -53,7 +46,6 @@ const SuMiktar = props => {
                   var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
                   var setWithMerge = SU.set({
                     SuMiktari:0,
-                    UykuSaati:0,
                     KALORI:0,
                     YAG:0,
                     KARBONHIDRAT:0,
@@ -71,8 +63,6 @@ const SuMiktar = props => {
         }).catch(function(error) {
             console.log("Transaction failed: ", error);
         });
-
-      
   },[])
 
 
@@ -80,9 +70,9 @@ const SuMiktar = props => {
 const[su,setsu]=useState(250)
 
 const[water,setwater]=useState(0)
-     
 
- su_ekle=()=>{
+
+   su_ekle=()=>{
 
     var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
 
@@ -99,6 +89,7 @@ return Firebase.firestore().runTransaction(function(transaction) {
         .onSnapshot(function(doc) {
           setwater(doc.data().SuMiktari)
         });
+    
         setCount(count+ 1);
         setsu((su+250))
         var SU= Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
@@ -119,6 +110,16 @@ return Firebase.firestore().runTransaction(function(transaction) {
     console.log("Transaction failed: ", error);
 });
 
+
+
+
+
+
+
+
+
+ 
+
    }
 
 
@@ -128,12 +129,10 @@ return Firebase.firestore().runTransaction(function(transaction) {
 
   return (
     <View style={styles.center}>
-       <ImageBackground style={{ flex:1,}} source={require('../../assets/k.png')}>
+       <ImageBackground style={{ flex:1,}} source={{uri: 'https://cdn.pixabay.com/photo/2014/11/25/16/32/drop-of-water-545377_960_720.jpg'}}>
 
       <View style={styles.title}>
-          <Text style={{fontWeight:"700",fontSize:40, color:"#634d4d" ,marginTop:"15%",  borderBottomColor:"#634d4d",
-    borderBottomWidth:3,
-    paddingBottom:"2%",}}>  SU HAYATTIR!</Text>
+          <Text style={{fontWeight:"700",fontSize:40, color:"white" ,marginTop:"15%"}}>  SU HAYATTIR!</Text>
       </View>
       <View style={styles.miktar}>
         <Text style={styles.miktartext}>Bugün Toplam {water} Mililitre Su İçtin</Text>
@@ -316,7 +315,9 @@ return Firebase.firestore().runTransaction(function(transaction) {
         </TouchableOpacity>
 
         </View>
-       
+        <View style={styles.txt}>
+        <Text style={styles.txtson}>Bir günde en az 2 litre su içmelisin!</Text>
+        </View>
        </ImageBackground>
     </View>
   );
@@ -341,7 +342,8 @@ const styles = StyleSheet.create({
     marginTop:"2%",
     marginBottom:"2%",
     width:"90%",
-    backgroundColor:"#d3af97",
+    backgroundColor:"#e3dcce",
+    borderRadius:25,
     height: "15%",
     padding:"7%",
     alignSelf: 'center',

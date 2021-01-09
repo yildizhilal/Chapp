@@ -63,7 +63,7 @@ var cityRef = dbh.collection("Users").doc(doc);
 
   return (
 
-    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/k.png')}>
+    <ImageBackground style={{flex: 1, opacity: 0.9,}} source={{uri: 'https://cdn.pixabay.com/photo/2019/05/28/10/05/rock-4234793_960_720.jpg'}}>
    <View style={styles.container}>
     <Text style={styles.logo}>Bazı bilgilere ihtiyacımız var..:)</Text>
     
@@ -72,9 +72,9 @@ var cityRef = dbh.collection("Users").doc(doc);
           radio_props={radio_props}
           initial={0}
           formHorizontal={true}
-          buttonColor={'#634d4d'}
-          selectedButtonColor={'#d3af97'}
-          buttonInnerColor={'#d3af97'}
+          buttonColor={'#fb5b5a'}
+          selectedButtonColor={'#fb5b5a'}
+          buttonInnerColor={'#fb5b5a'}
           buttonSize={20}
           onPress={cinsiyet =>setcinsiyet(cinsiyet)}
         />
@@ -137,13 +137,12 @@ var cityRef = dbh.collection("Users").doc(doc);
     },
     radio:{
       paddingLeft:"20%",
-      paddingRight:"30%",
+      paddingRight:"20%",
       paddingBottom:"10%",
       paddingTop:"10%",
-      alignContent:"space-around"
     },
     logo:{
-      marginTop: "20%",
+      marginTop: "4%",
       fontWeight:"bold",
       fontSize:20,
       color:"#26659c",
@@ -157,14 +156,14 @@ var cityRef = dbh.collection("Users").doc(doc);
     },
   
     inputView:{
-      width:"90%",
-      backgroundColor:"#d3af97",
-      borderRadius:25,
-      height: "5%",
-      marginBottom:"3%",
+      width:"100%",
+      backgroundColor:"#9bb0bf",
+      height:"5%",
+      marginBottom:"5%",
       justifyContent:"center",
-      padding:"7%",
-      alignSelf: 'center',
+      padding:20,
+      alignSelf: 'center',  
+      borderRadius:25,
     },
     inputText:{
       height:50,
@@ -172,7 +171,7 @@ var cityRef = dbh.collection("Users").doc(doc);
     },
     devamBtn:{
       width:"80%",
-      backgroundColor:"#b2cee6",
+      backgroundColor:"#fb5b5a",
       borderRadius:25,
       height:"8%",
       alignSelf: 'center',
@@ -181,11 +180,9 @@ var cityRef = dbh.collection("Users").doc(doc);
       marginBottom:"5%"
     },
     devamText:{
-      marginTop: "5%",
-      color:"#634d4d",
+      marginTop: "8%",
+      color:"white",
       textAlign: "center",
-      fontSize:30,
-      fontWeight:"bold",
     }
   
   });

@@ -17,7 +17,7 @@ const FoodList = ({ list }) => {
       <View
         style={[styles.listContainer]}
       >
-        <View style={{flexDirection:"row", backgroundColor:"#d3af97"}}>
+        <View style={{flexDirection:"row", backgroundColor:"orange"}}>
          
           <Text style={styles.listTitle} numberOfLines={1}>
             {list.name}
@@ -34,27 +34,26 @@ const FoodList = ({ list }) => {
 
 const styles = StyleSheet.create({
   listContainer: {
-    marginTop: 15,
-    borderRadius: 2,
-    width: "100%",
-    height:60,
+    marginTop: 10,
+    borderRadius: 6,
+    width: "180%",
+    height:80,
     justifyContent:"space-between"
   },
   listTitle: {
     fontSize: 24,
     fontWeight: "700",
-    color: "#634d4d",
+    color: "white",
     marginBottom: 18,
     paddingLeft:20,
     alignItems:"center",
     
-    marginTop:10
+    marginTop:20
   },
   count: {
     fontSize: 48,
     fontWeight: "200",
-    color: "#634d4d",
-    
+    color: "white",
   },
   subtitle: {
     fontSize: 12,

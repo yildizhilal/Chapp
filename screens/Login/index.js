@@ -57,8 +57,8 @@ const saveValueFunction = () => {
 return (
 
   <View style={styles.container}>
-  <ImageBackground style={{flex: 1, opacity: 0.9,}} source={require('../../assets/k.png')}>
-  <Text style={styles.logo}>H - CHAPP</Text>
+  <ImageBackground style={{flex: 1, opacity: 0.9,}} source={{uri: 'https://cdn.pixabay.com/photo/2016/03/01/08/06/harmony-1229886_960_720.jpg'}}>
+  <Text style={styles.logo}>CHAPP</Text>
   <View style={styles.inputView} >
     <TextInput  
       style={styles.inputText}
@@ -75,16 +75,16 @@ return (
       onChangeText={password => setpassword(password)}
         defaultValue={password}/>
   </View>
-  <TouchableOpacity style={styles.title} onPress={() => navigation.navigate('ForgotPassword')}>
+  <TouchableOpacity  onPress={() => navigation.navigate('ForgotPassword')}>
     <Text style={styles.forgot}>Forgot Password?</Text>
   </TouchableOpacity>
   <TouchableOpacity style={styles.loginBtn} 
       onPress={()=>saveValueFunction()}>
     <Text style={styles.loginText}>LOGIN</Text>
   </TouchableOpacity>
-  <TouchableOpacity style={styles.title} onPress={() => navigation.navigate('Kayit')}>
+  <TouchableOpacity onPress={() => navigation.navigate('Kayit')}>
     <Text
-     style={styles.kayit}>Sign up</Text>
+     style={styles.loginText}>Sign up</Text>
   </TouchableOpacity>
 
   </ImageBackground>
@@ -96,33 +96,21 @@ const styles = StyleSheet.create({
     flex: 1, 
   },
   logo:{
-    marginTop: "15%",
+    marginTop: "5%",
     fontWeight:"bold",
-    fontSize:50,
-    color:"#2f5a93",
-    marginBottom:"20%",
+    fontSize:80,
+    color:"#fb5b5a",
+    marginBottom:"30%",
     textAlign: "center",
-    borderBottomColor:"#2f5a93",
-    borderBottomWidth:5,
-    paddingBottom:"2%",
   },
   forgot:{
-    color:"#634d4d",
+    color:"white",
     fontSize:11,
     textAlign: "center",
-    fontWeight:"700",
-    borderBottomColor:"#634d4d",
-    borderBottomWidth:3,
-    paddingBottom:"2%",
-  },
-  title:{
-    alignItems:"center",
-    borderBottomWidth:0,
-    borderBottomColor:"white"
   },
   inputView:{
     width:"80%",
-    backgroundColor:"#d3af97",
+    backgroundColor:"#e3dcce",
     borderRadius:25,
     height: "8%",
     marginBottom:"5%",
@@ -136,7 +124,7 @@ const styles = StyleSheet.create({
   },
   loginBtn:{
     width:"80%",
-    backgroundColor:"#b2cee6",
+    backgroundColor:"#5e9ae8",
     borderRadius:25,
     height:"8%",
     alignSelf: 'center',
@@ -146,21 +134,8 @@ const styles = StyleSheet.create({
   },
   loginText:{
     marginTop: 15,
-    color:"#2f5a93",
+    color:"white",
     textAlign: "center",
-    fontSize:25,
-    fontWeight:"bold",
-    
-  },
-  kayit:{
-    marginTop: 15,
-    color:"#634d4d",
-    textAlign: "center",
-    fontWeight:"bold",
-    borderBottomColor:"#634d4d",
-    borderBottomWidth:3,
-    paddingBottom:"2%",
-    fontSize:20
   },
   text:{
     height:'50%',

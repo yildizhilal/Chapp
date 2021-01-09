@@ -45,10 +45,10 @@ var radio_props = [
 ];
   return (
 
-    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/k.png')}>
+    <ImageBackground style={{flex: 1, opacity: 0.9,}} source={{uri: 'https://cdn.pixabay.com/photo/2019/05/28/10/05/rock-4234793_960_720.jpg'}}>
 <View style={styles.container}>
 
-    <Text style={styles.logo}>Bazı bilgilere ihtiyacımız var..</Text>
+    <Text style={styles.logo}>Bazı bilgilere ihtiyacımız var..:)</Text>
     <View style={styles.inputView} >
       <TextInput  
         style={styles.inputText}
@@ -96,9 +96,9 @@ var radio_props = [
           radio_props={radio_props}
           initial={0}
           
-          buttonColor={'#634d4d'}
-          selectedButtonColor={'#d3af97'}
-          buttonInnerColor={'#d3af97'}
+          buttonColor={'#fb5b5a'}
+          selectedButtonColor={'#fb5b5a'}
+          buttonInnerColor={'#fb5b5a'}
           onPress={secim =>setsecim(secim)}
 
           
@@ -127,7 +127,6 @@ var radio_props = [
        color:"#26659c",
        borderBottomColor:"#26659c",
       borderBottomWidth:3,
-      marginBottom:"5%",
       fontWeight:"bold",},
     
     radio:{
@@ -136,28 +135,28 @@ var radio_props = [
     },
     
     logo:{
-      marginTop: "20%",
+      marginTop: "10%",
       fontWeight:"bold",
-      fontSize:17,
-      color:"#2f5a93",
+      fontSize:20,
+      color:"#26659c",
       marginBottom:"5%",
       textAlign: "center",
       alignSelf:'stretch',
-      borderBottomColor:"#2f5a93",
+      borderBottomColor:"#26659c",
       borderBottomWidth:3,
       paddingBottom:"5%",
     
     },
   
     inputView:{
-    width:"90%",
-    backgroundColor:"#d3af97",
-    borderRadius:25,
-    height: "5%",
-    marginBottom:"5%",
-    justifyContent:"center",
-    padding:"7%",
-    alignSelf: 'center',
+      width:"100%",
+      backgroundColor:"#9bb0bf",
+      height:"5%",
+      marginBottom:"5%",
+      justifyContent:"center",
+      padding:20,
+      alignSelf: 'center',  
+      borderRadius:25,
       
     },
     inputText:{
@@ -166,7 +165,7 @@ var radio_props = [
     },
     devamBtn:{
       width:"80%",
-      backgroundColor:"#b2cee6",
+      backgroundColor:"#fb5b5a",
       borderRadius:25,
       height:"8%",
       alignSelf: 'center',
@@ -175,11 +174,9 @@ var radio_props = [
       marginBottom:"10%"
     },
     devamText:{
-      marginTop: "5%",
-      color:"#634d4d",
+      marginTop: "8%",
+      color:"white",
       textAlign: "center",
-      fontSize:30,
-      fontWeight:"bold",
     },
 
     pickerStyle:

@@ -3,8 +3,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import StartPageScreen from '../screens/StartPage';
-import SplashScreen from '../screens/Splash';
-
 import KayitScreen from '../screens/Kayit';
 import LoginScreen from '../screens/Login';
 import KayitNextScreen from '../screens/KayitNext';
@@ -22,9 +20,8 @@ const Stack = createStackNavigator();
 const AppNavigationContainer = () => {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Splash" headerMode="none">
-
-        <Stack.Screen name="Splash"  component={SplashScreen} />
+        <Stack.Navigator initialRouteName="StartPage" headerMode="none">
+            
         <Stack.Screen name="StartPage"  component={StartPageScreen} />
         <Stack.Screen name="Kayit" component={KayitScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />

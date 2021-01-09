@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from 'react-native';
-import { Text, View,TouchableOpacity,TextInput,StyleSheet,ImageBackground,Alert} from 'react-native'
-import { colors } from 'react-native-elements';
+import { Text, View,TouchableOpacity,TextInput,StyleSheet} from 'react-native'
 import Firebase from '../../config/Firebase';
 
 
@@ -13,27 +11,13 @@ const ForgotPassword =props=> {
     const {navigation} = props;
     const [email, setemail] = useState('');
 
-    const ButtonAlert = () =>
-    Alert.alert(
-      "işte oldu!",
-      "lütfen e-postanı kontrol et",
-      [
-        {
-          text: "TAMAM",
-          onPress:() => navigation.navigate('Login'),
-         
-        },
-      
-      ],
-      { cancelable: false }
-    );
-
+    
       forgotPassword = () => {
         Firebase.auth().sendPasswordResetEmail(email)
           .then(function (user) {
             alert('Lütfen e-mail adresinizi kontrol edin')
           })
-          .then(()=> ButtonAlert())
+          .then(() => navigation.navigate('Login'))
           .catch(function (e) {
             console.log(e)
           })
@@ -41,73 +25,93 @@ const ForgotPassword =props=> {
 
 
     return (
-      <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/k.png')}>
-         <View style={styles.container}>
-        <Text style={styles.txt}>Lütfen e-mail adresinizi girin</Text>
-        <View style={styles.inputView}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Forgot Password Screen</Text>
         <TextInput  
       style={styles.inputText}
       placeholder="Email..." 
-      placeholderTextColor="#634d4d"
+      placeholderTextColor="#003f5c"
       onChangeText={email => setemail(email)}
       defaultValue={email}/>
-      </View>
-        <TouchableOpacity style={styles.resetbtn}
+
+        <TouchableOpacity 
       onPress={forgotPassword}>
-    <Text style={styles.resetbtntxt}>Reset</Text>
+    <Text>Reset</Text>
   </TouchableOpacity>
       </View>
-      </ImageBackground>
     )
 }
 const styles = StyleSheet.create({
     container:{
-      justifyContent:'center',
-      alignItems:'center' ,   
-     },
-     txt:{
-      fontSize:25,
+      flex: 1, 
+    },
+    logo:{
+      marginTop: "5%",
       fontWeight:"bold",
-      marginTop:"45%",
-      color: "#634d4d"
+      fontSize:80,
+      color:"#fb5b5a",
+      marginBottom:"30%",
+      textAlign: "center",
+    },
+    forgot:{
+      color:"white",
+      fontSize:11,
+      textAlign: "center",
     },
     inputView:{
       width:"80%",
-      backgroundColor:"#d3af97",
+      backgroundColor:"#e3dcce",
       borderRadius:25,
       height: "8%",
       marginBottom:"5%",
       justifyContent:"center",
       padding:"7%",
       alignSelf: 'center',
-      marginTop:"20%",
     },
     inputText:{
       height:50,
-      marginTop:"3%",
-      alignSelf: 'center',
-      fontWeight:"bold",
+      color:"black"
     },
-    resetbtn:{
-      width:"60%",
-      backgroundColor:"#b2cee6",
+    loginBtn:{
+      width:"80%",
+      backgroundColor:"#5e9ae8",
       borderRadius:25,
-      height:"10%",
+      height:"8%",
       alignSelf: 'center',
+  
       marginTop:"10%",
-      marginBottom:"10%"
+      marginBottom:"5%",
     },
-    resetbtntxt:{
-      alignSelf:"center",
-      marginTop:"5%", 
-      fontWeight:"bold",
-      fontSize: 25,
-      color:"#634d4d"
-    }
-
-  
-  
-   
+    loginText:{
+      marginTop: 15,
+      color:"white",
+      textAlign: "center",
+    },
+    text:{
+      height:'50%',
+        fontWeight: 'bold',
+        fontSize: 40,
+        textAlign: "center",
+        fontStyle: 'italic',
+        fontFamily:"tahoma",
+    },
+    buttonContainer:{
+      justifyContent:'space-between',
+      width:'50%',
+      height:'25%',
+    },
+    kayitText:{
+     
+      backgroundColor: "#FFCC80",
+      borderWidth: 1,
+      borderRadius: 20,
+      justifyContent:"space-around",
+      fontSize: 20,
+    },
+    textButton:{
+      fontSize:20,
+      textAlign: "center",
+    },
   
   
   });

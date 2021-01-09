@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   TextInput,
   Modal
-  
 } from "react-native";
 import { colors } from "react-native-elements";
 import { FlatList } from "react-native-gesture-handler";
@@ -140,7 +139,7 @@ const AddFood = () => {
 </View>
 <TouchableOpacity
           style={{
-            backgroundColor:"#d3af97",
+            backgroundColor:"orange",
             marginTop: 24,
             height: 50,
             borderRadius: 6,
@@ -163,7 +162,7 @@ const AddFood = () => {
 
         <TouchableOpacity
           style={{
-            backgroundColor:"#d3af97",
+            backgroundColor:"orange",
             marginTop: 24,
             height: 50,
             borderRadius: 6,
@@ -188,7 +187,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor:"#f1e1c7",
+    backgroundColor:"#FFCC80",
   },
   colorContainer: {
     flexDirection: "row",
@@ -208,7 +207,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "#d3af97",
+    borderColor: "orange",
     borderWidth:2,
     backgroundColor:"white",
     borderRadius: 6,

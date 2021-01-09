@@ -34,7 +34,7 @@ const BarkodEkle = props => {
   
   var date=moment().format('LL');
 
-handleSignUp = () => {
+  handleSignUp = () => {
     dbh.collection("Barkod").doc(getValue).set({
       Kalori: kalori,
       name:isim,
@@ -111,6 +111,7 @@ useEffect(() => {
 
   return (
 
+    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={{uri: 'https://cdn.pixabay.com/photo/2020/11/24/18/19/cat-5773481_960_720.jpg'}}>
 <View style={styles.container}>
 
 <TouchableOpacity
@@ -178,6 +179,7 @@ useEffect(() => {
 
    
     </View>
+    </ImageBackground>
  
   );
   }
@@ -188,7 +190,6 @@ useEffect(() => {
       flex: 1, 
       paddingLeft:40,
       paddingRight:40,
-      backgroundColor:"#f1e1c7"
       
     },
  
@@ -198,11 +199,11 @@ useEffect(() => {
       marginTop: "10%",
       fontWeight:"bold",
       fontSize:20,
-      color:"#2f5a93",
+      color:"#26659c",
       marginBottom:"10%",
       textAlign: "center",
       alignSelf:'stretch',
-      borderBottomColor:"#2f5a93",
+      borderBottomColor:"#26659c",
       borderBottomWidth:3,
       paddingBottom:10,
     
@@ -210,7 +211,7 @@ useEffect(() => {
   
     inputView:{
       width:"80%",
-      backgroundColor:"#d3af97",
+      backgroundColor:"#3c4d80",
       height:'8%',
       marginBottom:"5%",
       justifyContent:"center",
@@ -222,11 +223,11 @@ useEffect(() => {
     },
     inputText:{
       height:25,
-      color:"black",
+      color:"pink",
     },
     devamBtn:{
       width:"80%",
-      backgroundColor:"#b2cee6",
+      backgroundColor:"#ca9bca",
       borderRadius:25,
       height:'10%',
       alignSelf: 'center',
@@ -234,8 +235,8 @@ useEffect(() => {
       marginBottom:"5%",
     },
     devamText:{
-      marginTop: "7%",
-      color:"#634d4d",
+      marginTop: "5%",
+      color:"white",
       textAlign: "center",
       fontSize:30,
       fontWeight:"bold",

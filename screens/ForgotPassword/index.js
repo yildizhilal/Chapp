@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     },
     inputView:{
       width:"80%",
-      backgroundColor:"#d3af97",
+      backgroundColor:"#adcceb",
       borderRadius:25,
       height: "8%",
       marginBottom:"5%",
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     },
     resetbtn:{
       width:"60%",
-      backgroundColor:"#b2cee6",
+      backgroundColor:"#d77a5b",
       borderRadius:25,
       height:"10%",
       alignSelf: 'center',
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
       marginTop:"5%", 
       fontWeight:"bold",
       fontSize: 25,
-      color:"#634d4d"
+      color:"white"
     }
 
   

@@ -140,7 +140,7 @@ const AddFood = () => {
 </View>
 <TouchableOpacity
           style={{
-            backgroundColor:"#d3af97",
+            backgroundColor:"#adcceb",
             marginTop: 24,
             height: 50,
             borderRadius: 6,
@@ -163,7 +163,7 @@ const AddFood = () => {
 
         <TouchableOpacity
           style={{
-            backgroundColor:"#d3af97",
+            backgroundColor:"#adcceb",
             marginTop: 24,
             height: 50,
             borderRadius: 6,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "#d3af97",
+    borderColor: "#adcceb",
     borderWidth:2,
     backgroundColor:"white",
     borderRadius: 6,

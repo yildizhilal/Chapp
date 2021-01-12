@@ -17,7 +17,7 @@ const FoodList = ({ list }) => {
       <View
         style={[styles.listContainer]}
       >
-        <View style={{flexDirection:"row", backgroundColor:"#d3af97"}}>
+        <View style={{flexDirection:"row", backgroundColor:"#adcceb"}}>
          
           <Text style={styles.listTitle} numberOfLines={1}>
             {list.name}

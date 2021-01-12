@@ -54,7 +54,8 @@ const showTimepicker1 = () => {
   showMode1('time');
 };
 
-const kontrol=()=>{
+
+kontrol=()=>{
   var x=Number(tarih);
   var y=Number(tarih1);
   var deger=y-x;
@@ -66,6 +67,7 @@ const kontrol=()=>{
   }
   return deger;
 }
+
 const[saat,setSaat]=useState(0)
 useEffect(()=>{
     
@@ -184,7 +186,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   logo:{
-    marginTop: "10%",
+    marginTop: "5%",
     fontWeight:"bold",
     fontSize:20,
     color:"#634d4d",
@@ -215,9 +217,9 @@ const styles = StyleSheet.create({
   },
   uykuView:{
     width:"90%",
-    backgroundColor:"#d3af97",
+    backgroundColor:"#adcceb",
     height:"10%",
-    marginBottom:"25%",
+    marginBottom:"40%",
     justifyContent:"center",
     padding:20,
     alignSelf: 'center',  
@@ -225,9 +227,8 @@ const styles = StyleSheet.create({
   },
   kaydetBtntxt:{
     marginTop: 15,
-    color:"#634d4d",
+    color:"white",
     textAlign: "center",
-    fontWeight:"bold",
     fontSize:40,
     justifyContent: "center",
     alignItems: "center",
@@ -242,11 +243,11 @@ const styles = StyleSheet.create({
   },
   kaydetBtn:{
     width:"50%",
-    backgroundColor:"#d3af97",
+    backgroundColor:"#5e9ae8",
     borderRadius:25,
     height:"30%",
     alignSelf:'center',
-    marginTop:"10%",
+    marginTop:"5%",
   },
   design:{
     flexDirection:'row',

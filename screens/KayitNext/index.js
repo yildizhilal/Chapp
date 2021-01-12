@@ -73,8 +73,8 @@ var cityRef = dbh.collection("Users").doc(doc);
           initial={0}
           formHorizontal={true}
           buttonColor={'#634d4d'}
-          selectedButtonColor={'#d3af97'}
-          buttonInnerColor={'#d3af97'}
+          selectedButtonColor={'#d77a5b'}
+          buttonInnerColor={'#d77a5b'}
           buttonSize={20}
           onPress={cinsiyet =>setcinsiyet(cinsiyet)}
         />
@@ -143,7 +143,7 @@ var cityRef = dbh.collection("Users").doc(doc);
       alignContent:"space-around"
     },
     logo:{
-      marginTop: "20%",
+      marginTop: "10%",
       fontWeight:"bold",
       fontSize:20,
       color:"#26659c",
@@ -158,7 +158,7 @@ var cityRef = dbh.collection("Users").doc(doc);
   
     inputView:{
       width:"90%",
-      backgroundColor:"#d3af97",
+      backgroundColor:"#adcceb",
       borderRadius:25,
       height: "5%",
       marginBottom:"3%",
@@ -172,7 +172,7 @@ var cityRef = dbh.collection("Users").doc(doc);
     },
     devamBtn:{
       width:"80%",
-      backgroundColor:"#b2cee6",
+      backgroundColor:"#d77a5b",
       borderRadius:25,
       height:"8%",
       alignSelf: 'center',
@@ -182,7 +182,7 @@ var cityRef = dbh.collection("Users").doc(doc);
     },
     devamText:{
       marginTop: "5%",
-      color:"#634d4d",
+      color:"white",
       textAlign: "center",
       fontSize:30,
       fontWeight:"bold",

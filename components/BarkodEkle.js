@@ -210,7 +210,7 @@ useEffect(() => {
   
     inputView:{
       width:"80%",
-      backgroundColor:"#d3af97",
+      backgroundColor:"#adcceb",
       height:'8%',
       marginBottom:"5%",
       justifyContent:"center",
@@ -226,7 +226,7 @@ useEffect(() => {
     },
     devamBtn:{
       width:"80%",
-      backgroundColor:"#b2cee6",
+      backgroundColor:"#5e9ae8",
       borderRadius:25,
       height:'10%',
       alignSelf: 'center',

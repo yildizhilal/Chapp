@@ -97,8 +97,8 @@ var radio_props = [
           initial={0}
           
           buttonColor={'#634d4d'}
-          selectedButtonColor={'#d3af97'}
-          buttonInnerColor={'#d3af97'}
+          selectedButtonColor={'#d77a5b'}
+          buttonInnerColor={'#d77a5b'}
           onPress={secim =>setsecim(secim)}
 
           
@@ -136,7 +136,7 @@ var radio_props = [
     },
     
     logo:{
-      marginTop: "20%",
+      marginTop: "10%",
       fontWeight:"bold",
       fontSize:17,
       color:"#2f5a93",
@@ -151,7 +151,7 @@ var radio_props = [
   
     inputView:{
     width:"90%",
-    backgroundColor:"#d3af97",
+    backgroundColor:"#adcceb",
     borderRadius:25,
     height: "5%",
     marginBottom:"5%",
@@ -166,7 +166,7 @@ var radio_props = [
     },
     devamBtn:{
       width:"80%",
-      backgroundColor:"#b2cee6",
+      backgroundColor:"#d77a5b",
       borderRadius:25,
       height:"8%",
       alignSelf: 'center',
@@ -176,7 +176,7 @@ var radio_props = [
     },
     devamText:{
       marginTop: "5%",
-      color:"#634d4d",
+      color:"white",
       textAlign: "center",
       fontSize:30,
       fontWeight:"bold",

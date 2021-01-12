@@ -52,7 +52,7 @@ export default function DrawerNavigator(props) {
   }
   return (
       <Drawer.Navigator    drawerStyle={{
-        backgroundColor: '#b2cee6',
+        backgroundColor: '#e19b84',
         width: 240,
       }}
       drawerContent={props =>  

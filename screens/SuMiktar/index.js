@@ -131,7 +131,7 @@ return Firebase.firestore().runTransaction(function(transaction) {
        <ImageBackground style={{ flex:1,}} source={require('../../assets/k.png')}>
 
       <View style={styles.title}>
-          <Text style={{fontWeight:"700",fontSize:40, color:"#634d4d" ,marginTop:"15%",  borderBottomColor:"#634d4d",
+          <Text style={{fontWeight:"700",fontSize:40, color:"#d77a5b" ,marginTop:"8%",  borderBottomColor:"#d77a5b",
     borderBottomWidth:3,
     paddingBottom:"2%",}}>  SU HAYATTIR!</Text>
       </View>
@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     marginTop:"2%",
     marginBottom:"2%",
     width:"90%",
-    backgroundColor:"#d3af97",
+    backgroundColor:"#adcceb",
     height: "15%",
     padding:"7%",
     alignSelf: 'center',

@@ -42,7 +42,7 @@ const BarkodData = props => {
 
   return (
 
-    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={{uri: 'https://cdn.pixabay.com/photo/2020/11/24/18/19/cat-5773481_960_720.jpg'}}>
+    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/beyaz.png')}>
 <View style={styles.container}>
     <Text style={styles.logo}>Besin Bilgileri</Text>
 

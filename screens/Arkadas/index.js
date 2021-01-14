@@ -71,14 +71,11 @@ const Arkadas = () => {
                   console.log("x",cities.toString())
 
                   var cityRef = Firebase.firestore().collection('Users').doc(cities.toString()).collection("istekler").doc(doc.data().KullaniciAdi)
-                  if(doc.data().Cinsiyet==1){
-                    var avatar="../assets/kurabiye.jpg"
-
-                  }
+                 
                   var setWithMerge = cityRef.set({
                       name: doc.data().KullaniciAdi,
                       cinsiyet:doc.data().Cinsiyet,
-                      avatar:avatar
+                    
                   }, { merge: true });
 
             });
@@ -99,7 +96,7 @@ const Arkadas = () => {
 
 
   return (
-    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/k.png')}>
+    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/krem.png')}>
 
     <View style={styles.container}>
       <Text style={styles.title}>Arkadaşlar</Text>

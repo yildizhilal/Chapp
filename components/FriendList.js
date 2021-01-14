@@ -22,15 +22,7 @@ const FriendList = ({ list }) => {
         console.error("Error removing document: ", error);
     });
   }
-  useEffect(()=>{
-    console.log(list.cinsiyet)
-    if(list.cinsiyet==1){
-      resim=require("../assets/kurabiye.jpg")
-    }
-    else{
-      resim=require("../assets/dene.png")
-    }
-  })
+
 
 
   return (
@@ -76,7 +68,7 @@ const styles = StyleSheet.create({
   listTitle: {
     fontSize: 24,
     fontWeight: "700",
-    color: "white",
+    color: "#654d4d",
     marginBottom: 18,
     paddingLeft:20,
     alignItems:"center",

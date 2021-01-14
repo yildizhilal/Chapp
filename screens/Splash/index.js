@@ -14,22 +14,18 @@ const Splash = props => {
   const [password, setpassword] = useState('......');
 
   useEffect(() => {
-
     AsyncStorage.getItem('any_key_here').then(
       (value) =>
         //AsyncStorage returns a promise so adding a callback to get the value
       setemail(value)
       //Setting the value in Text
     );
-
     AsyncStorage.getItem('any_key_here2').then(
       (value) =>
         //AsyncStorage returns a promise so adding a callback to get the value
        setpassword(value)
       //Setting the value in Text
     );
-   
- 
     if(email!=null && password!=null && email!="x@x.com" && password!="......"){
       
       Firebase.auth()
@@ -45,21 +41,15 @@ const Splash = props => {
       }
        ))
       .catch(error => alert(error))
-  
-   
     }
-
-    
     else if(email==null && password==null){
-     
         navigation.navigate('Login');
- 
     }
   });
 
   return (
     <View style={styles.container}>
-       <ImageBackground style={{flex: 1, opacity: 0.87,}} source={require('../../assets/y.png')}>
+       <ImageBackground style={{flex: 1, opacity: 0.87,}} source={require('../../assets/splash_.png')}>
        
      
       </ImageBackground>

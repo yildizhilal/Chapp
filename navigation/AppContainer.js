@@ -2,7 +2,6 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import StartPageScreen from '../screens/StartPage';
 import SplashScreen from '../screens/Splash';
 
 import KayitScreen from '../screens/Kayit';
@@ -25,7 +24,6 @@ const AppNavigationContainer = () => {
         <Stack.Navigator initialRouteName="Splash" headerMode="none">
 
         <Stack.Screen name="Splash"  component={SplashScreen} />
-        <Stack.Screen name="StartPage"  component={StartPageScreen} />
         <Stack.Screen name="Kayit" component={KayitScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="KayitNext" component={KayitNextScreen} />

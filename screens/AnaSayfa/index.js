@@ -12,6 +12,8 @@ import FoodList from "../../components/FoodList";
 import { DrawerActions } from '@react-navigation/native';
 import * as Progress from 'react-native-progress';
 import { MaterialIcons } from '@expo/vector-icons'; 
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 
 //disable yellow warnings on EXPO client!
@@ -81,15 +83,13 @@ const AnaSayfa=({ navigation })=> {
                   kal.push(doc.data().Kalori);
                   k.push(doc.data().Karbonhidrat);
                   p.push(doc.data().Protein);
-                  y.push(doc.data().Yag);}
-              }
+                  y.push(doc.data().Yag);} }
               );
             setkalori(kal)
             setK(k)
             setP(p)
             setY(y)
           });
-
           var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
           Firebase.firestore().runTransaction(function(transaction) {
               return transaction.get(sfDocRef).then(function(sfDoc) {
@@ -102,27 +102,20 @@ const AnaSayfa=({ navigation })=> {
                       KALORI:0,
                       SuMiktari:0,
                       UykuSaati:0,
-                    }, { merge: true });
-                  }
-
+                      Adim:0,
+                    }, { merge: true }); }
               });
             })
-
           Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
           .onSnapshot(function(doc) {
             KAL.push(doc.data().KALORI)
             KAR.push(doc.data().KARBONHIDRAT)
             YAG.push(doc.data().YAG)
-            PRO.push(doc.data().PROTEIN)
-            
-          });
+            PRO.push(doc.data().PROTEIN) });
           setKALORI(KAL); 
           setPRO(PRO); 
           setKAR(KAR); 
           setYAG(YAG); 
-
-
-
           const subscriber = Firebase.firestore()
       .collection('Users').doc(user).collection("GunlukTakip").doc(date).collection("food")
       .onSnapshot(querySnapshot => {
@@ -132,13 +125,12 @@ const AnaSayfa=({ navigation })=> {
             ...documentSnapshot.data(),
             key: documentSnapshot.id,
           });
-        });
-     
-        setFood(food);
+        });setFood(food);
+        
       });
 
       deneme=(kalori-KALORI);
-      setd(deneme)
+      setd(deneme);
 
       toggleAddFlowersModal = () => {
         setFlowers(true);
@@ -161,7 +153,7 @@ const AnaSayfa=({ navigation })=> {
      
   return (
     <View style={styles.container}>
-        <ImageBackground style={{ flex:1,}} source={require('../../assets/k.png')}>
+        <ImageBackground style={{ flex:1,}} source={require('../../assets/beyaz.png')}>
 
     <View style={{alignItems:"flex-start",top:25,left:15}}>
     <FontAwesome name="bars" size={30} color="black" onPress={()=>navigation.dispatch(DrawerActions.openDrawer())} />

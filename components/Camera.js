@@ -34,10 +34,6 @@ console.disableYellowBox = true;
     })();
 
   }, []);
-
-
-
-
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
 
@@ -46,9 +42,6 @@ console.disableYellowBox = true;
       setdataa("")
       setBarkod(true);
     } 
-  
-
-
     var sfDocRef = dbh.collection("Barkod").doc(data)
     Firebase.firestore().runTransaction(function(transaction) {
       return transaction.get(sfDocRef).then(function(sfDoc) {
@@ -67,16 +60,12 @@ console.disableYellowBox = true;
             )
           }
           else{
-            
-    alert(<TextInput placeholder="deneme"></TextInput>);
-          
+        alert(<TextInput placeholder="deneme"></TextInput>);        
            Firebase.firestore().collection("Barkod").where("barkod", "==", data)
             .onSnapshot(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) { 
                   
                     var Barkods = Firebase.firestore().collection('Users').doc(user).collection("GunlukTakip").doc(date).collection("food").doc(data)
-                  
-        
                     var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
                       Firebase.firestore().runTransaction(function(transaction) {
                           return transaction.get(sfDocRef).then(function(sfDoc) {
@@ -89,8 +78,7 @@ console.disableYellowBox = true;
                                   KALORI:0,
                                   SuMiktari:0
                                 }, { merge: true });
-                              }
-                          
+                              }                    
                               var newk = sfDoc.data().KALORI +((doc.data().Kalori*gram)/100);
                               var newK = sfDoc.data().KARBONHIDRAT +((doc.data().Karbonhidrat*gram)/100);
                               var newY = sfDoc.data().YAG +((doc.data().Yag*gram)/100);
@@ -100,8 +88,7 @@ console.disableYellowBox = true;
                                   transaction.update(sfDocRef, { YAG: newY });
                                   transaction.update(sfDocRef, { KARBONHIDRAT: newK });
                                   transaction.update(sfDocRef, { PROTEIN: newP });
-                                  return {newk,newK,newP,newY};
-        
+                                  return {newk,newK,newP,newY};       
                           });
                       }).then(function(newk) {
                           console.log("Population increased to ", newk);

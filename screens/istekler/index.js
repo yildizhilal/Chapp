@@ -58,7 +58,7 @@ const istekler = () => {
   };
 
   return (
-    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/k.png')}>
+    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/krem.png')}>
     <View style={styles.container}>
       
       <Text style={styles.title}>Arkadaşlık İstekleri</Text>
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   },
   listArea: {
     flex: 1,
+    marginTop:"10%",
 
   },
   title: {

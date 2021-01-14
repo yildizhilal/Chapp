@@ -14,20 +14,30 @@ const FriendList = ({ list }) => {
   var user = Firebase.auth().currentUser.email;
 
 
-  istek_kabul=(isim)=>{
-    
-    var cityRef = Firebase.firestore().collection('Users').doc(user).collection("Arkadaslar").doc(isim)
-    var setWithMerge = cityRef.set({
-        name: isim
-    }, { merge: true });
-    Firebase.firestore().collection('Users').doc(user).collection("istekler").doc(isim).delete().then(function() {
-        console.log("Document successfully deleted!");
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
+  istek_kabul=(list)=>{
+
+    Firebase.firestore().collection('Users').where("KullaniciAdi", "==", list.name)
+    .onSnapshot(function(querySnapshot) {
+        var cities = [];
+        querySnapshot.forEach(function(doc) {
+            cities.push(doc.data().email);
+        });
+        Firebase.firestore().collection("Users").doc(user)
+    .onSnapshot(function(doc) {
+      var cityRef = Firebase.firestore().collection('Users').doc(cities.toString()).collection("Arkadaslar").doc(doc.data().KullaniciAdi)
+      var setWithMerge = cityRef.set({
+          name: doc.data().KullaniciAdi
+      }, { merge: true });
     });
-  }
-  istek_red=(isim)=>{
-    Firebase.firestore().collection('Users').doc(user).collection("istekler").doc(isim).delete().then(function() {
+    });
+
+    var cityRef = Firebase.firestore().collection('Users').doc(user).collection("Arkadaslar").doc(list.name)
+    var setWithMerge = cityRef.set({
+        name: list.name,
+        cinsiyet:list.cinsiyet
+
+    }, { merge: true });
+    Firebase.firestore().collection('Users').doc(user).collection("istekler").doc(list.name).delete().then(function() {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
         console.error("Error removing document: ", error);
@@ -52,7 +62,7 @@ const FriendList = ({ list }) => {
             {list.puan}
           </Text>
           <View style={{flexDirection:"row", alignContent:"space-between"}}>
-        <TouchableOpacity onPress={()=>istek_kabul(list.name)} style={{
+        <TouchableOpacity onPress={()=>istek_kabul(list)} style={{
         paddingHorizontal:20,
         justifyContent: 'center',
         alignItems: 'flex-end',
@@ -89,7 +99,7 @@ const styles = StyleSheet.create({
   listTitle: {
     fontSize: 24,
     fontWeight: "700",
-    color: "white",
+    color: "#654d4d",
     marginBottom: 18,
     paddingLeft:20,
     alignItems:"center",

@@ -4,8 +4,6 @@ import { Icon } from 'react-native-elements'
 import { AntDesign } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons'; 
-
-
 import AnaSayfa from "../screens/AnaSayfa"
 import SuMiktar from "../screens/SuMiktar"
 import AdimSayar from "../screens/AdimSayar"

@@ -19,44 +19,12 @@ const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigator(props) {
 
-  const createTwoButtonAlert = () =>
-  Alert.alert(
-    "Çıkış",
-    "Oturumu kapatmak istediğinizden emin misiniz?",
-    [
-      {
-        text: "evet",
-        onPress:()=> {navigation.navigate('deneme', { screen: 'Login' })},
-        style: "cancel"
-      },
-      { text: "hayır", onPress: () => console.log("OK Pressed") }
-    ],
-    { cancelable: false }
-  );
 
-  function CustomDrawerContent(props) {
-    return (
-      <DrawerContentScrollView {...props}>
-        <DrawerItemList {...props} />
-        <DrawerItem label="Logout"
-          icon={({color, size}) => (
-            <Icon 
-            name="exit-to-app" 
-            color={color}
-            size={size}
-            />
-        )}
-         onPress={createTwoButtonAlert} />
-      </DrawerContentScrollView>
-    );
-  }
   return (
       <Drawer.Navigator    drawerStyle={{
         backgroundColor: '#e19b84',
         width: 240,
-      }}
-      drawerContent={props =>  
-        <CustomDrawerContent {...props}/>}>
+      }}>
           
         <Drawer.Screen name="AnaSayfa" component={TabNavigator} options={{
           drawerLabel: 'AnaSayfa',

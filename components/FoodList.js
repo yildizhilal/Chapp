@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     width: "100%",
     height:60,
+    paddingLeft:"5%",
     justifyContent:"space-between",
     justifyContent:"center",
     alignContent:"center"

@@ -72,7 +72,6 @@ handleSignUp = () => {
                           transaction.update(sfDocRef, { KARBONHIDRAT: newK });
                           transaction.update(sfDocRef, { PROTEIN: newP });
                           return {newk,newK,newP,newY};
-
                   });
               }).then(function(newk) {
                   console.log("Population increased to ", newk);
@@ -80,8 +79,6 @@ handleSignUp = () => {
                   // This will be an "population is too big" error.
                   console.error(err);
               });
-
-
               var setWithMerge = Foods.set({
                 name: doc.data().name,
                 Kalori:((doc.data().Kalori*gram)/100),
@@ -89,11 +86,8 @@ handleSignUp = () => {
                 Yag:((doc.data().Yag*gram)/100),
                 Karbonhidrat:((doc.data().Karbonhidrat*gram)/100),
             }, { merge: true });
-
-
-    });
+  });
 }
-
 useEffect(() => {
     //function to get the value from AsyncStorage
     AsyncStorage.getItem('key').then(
@@ -102,13 +96,7 @@ useEffect(() => {
         setGetValue(value)
       //Setting the value in Text
     );
-
-
   })
-
-
-
-
   return (
 
 <View style={styles.container}>

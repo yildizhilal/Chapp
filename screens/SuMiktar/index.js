@@ -18,14 +18,9 @@ const SuMiktar = props => {
 
   const [count, setCount] = useState(0);
   
-  function _su(){
-  var waterdeger;
-  waterdeger=water/250;
-  setCount(waterdeger);
+ 
 
-  }
-
-  function  _kontrol(n) {
+  _kontrol=(n)=> {
     if (count==n){
       return false;
     }
@@ -33,7 +28,7 @@ const SuMiktar = props => {
       return true;
     }
   }
-  function  _kontrol2(n) {
+ _kontrol2=(n)=> {
     if (count<n){
       return true;
     }
@@ -43,9 +38,7 @@ const SuMiktar = props => {
   }
 
   useEffect(()=>{
-    
         var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
-
         return Firebase.firestore().runTransaction(function(transaction) {
             // This code may get re-run multiple times if there are conflicts.
             return transaction.get(sfDocRef).then(function(sfDoc) {
@@ -58,6 +51,7 @@ const SuMiktar = props => {
                     YAG:0,
                     KARBONHIDRAT:0,
                     PROTEİN:0,
+                    Adim:0,
                   }, { merge: true });
                 }
 
@@ -70,20 +64,14 @@ const SuMiktar = props => {
             console.log("Transaction successfully committed!");
         }).catch(function(error) {
             console.log("Transaction failed: ", error);
-        });
-
-      
+        }); 
   },[])
 
 
-
 const[su,setsu]=useState(250)
-
 const[water,setwater]=useState(0)
      
-
  su_ekle=()=>{
-
     var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
 
 return Firebase.firestore().runTransaction(function(transaction) {
@@ -105,30 +93,21 @@ return Firebase.firestore().runTransaction(function(transaction) {
          var setWithMerge = SU.set({
            SuMiktari:su
        }, { merge: true });
-
-        // Add one person to the city population.
-        // Note: this could be done without a transaction
-        //       by updating the population using FieldValue.increment()
-       // var newPopulation = sfDoc.data().population + 1;
-       
-       //transaction.update(sfDocRef, { population: newPopulation });
     });
 }).then(function() {
     console.log("Transaction successfully committed!");
 }).catch(function(error) {
     console.log("Transaction failed: ", error);
 });
-
    }
-
-
-  console.log(water,"water")
+     console.log(water,"water")
 
    
+     
 
   return (
     <View style={styles.center}>
-       <ImageBackground style={{ flex:1,}} source={require('../../assets/k.png')}>
+       <ImageBackground style={{ flex:1,}} source={require('../../assets/beyaz.png')}>
 
       <View style={styles.title}>
           <Text style={{fontWeight:"700",fontSize:40, color:"#d77a5b" ,marginTop:"8%",  borderBottomColor:"#d77a5b",

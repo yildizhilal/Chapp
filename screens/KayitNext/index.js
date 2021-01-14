@@ -27,23 +27,19 @@ const KayitNext = (props) => {
   const [yas, setyas] = useState('');
   const [hedef, sethedef] = useState('');
   
-
-  
 data_ekle=()=>{
-
-if(cinsiyet===0){
-  var x=(4,15)
-  var kalori= 22*hedef
-  var yag=  (1,6)*hedef
-  var karbonhidrat=(4,8)*hedef
-  var protein=(0,8)*hedef
-}
-else{
-  kalori= (24)*hedef
-   yag= (1,6)*hedef
-   karbonhidrat=(4,8)*hedef
-   protein=(0,8)*hedef 
-   
+    if(cinsiyet===0){
+      var x=(4,15)
+      var kalori= 22*hedef
+      var yag=  (1,6)*hedef
+      var karbonhidrat=(4,8)*hedef
+      var protein=(0,8)*hedef
+    }
+    else{
+      kalori= (24)*hedef
+      yag= (1,6)*hedef
+      karbonhidrat=(4,8)*hedef
+      protein=(0,8)*hedef 
 }
 var cityRef = dbh.collection("Users").doc(doc);
     var setWithMerge = cityRef.set({
@@ -58,12 +54,11 @@ var cityRef = dbh.collection("Users").doc(doc);
       Protein:protein,
 }, { merge: true }); 
 
-
 }
 
   return (
 
-    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/k.png')}>
+    <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/krem.png')}>
    <View style={styles.container}>
     <Text style={styles.logo}>Bazı bilgilere ihtiyacımız var..:)</Text>
     

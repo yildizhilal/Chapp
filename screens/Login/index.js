@@ -13,9 +13,6 @@ const Login = props => {
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
   const [getValue, setGetValue] = useState('');
-
-
-
   handleLogin = () => {
 
     Firebase.auth()
@@ -32,7 +29,6 @@ const Login = props => {
          ))
         .catch(error => alert(error))
 }
-
 const saveValueFunction = () => {
   //function to save the value in AsyncStorage
   if (email) {
@@ -42,7 +38,6 @@ const saveValueFunction = () => {
     setemail('');
     //alert to confirm
   } 
-
   if (password) {
     //To check the input not empty
     AsyncStorage.setItem('any_key_here2', password);
@@ -57,7 +52,7 @@ const saveValueFunction = () => {
 return (
 
   <View style={styles.container}>
-  <ImageBackground style={{flex: 1, opacity: 0.9,}} source={require('../../assets/k.png')}>
+  <ImageBackground style={{flex: 1, opacity: 0.9,}} source={require('../../assets/krem.png')}>
   <Text style={styles.logo}>H - CHAPP</Text>
   <View style={styles.inputView} >
     <TextInput  
@@ -69,6 +64,7 @@ return (
   </View>
   <View style={styles.inputView} >
     <TextInput  
+      secureTextEntry={true}
       style={styles.inputText}
       placeholder="Password..." 
       placeholderTextColor="#003f5c"

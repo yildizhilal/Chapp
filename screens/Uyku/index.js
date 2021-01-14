@@ -67,12 +67,9 @@ kontrol=()=>{
   }
   return deger;
 }
-
 const[saat,setSaat]=useState(0)
-useEffect(()=>{
-    
+useEffect(()=>{   
   var sfDocRef = Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
-
   return Firebase.firestore().runTransaction(function(transaction) {
       // This code may get re-run multiple times if there are conflicts.
       return transaction.get(sfDocRef).then(function(sfDoc) {
@@ -85,9 +82,9 @@ useEffect(()=>{
               YAG:0,
               KARBONHIDRAT:0,
               PROTEİN:0,
+              Adim:0,
             }, { merge: true });
           }
-
           Firebase.firestore().collection("Users").doc(user).collection("GunlukTakip").doc(date)
           .onSnapshot(function(doc) {
             setSaat(doc.data().UykuSaati)
@@ -115,11 +112,11 @@ useEffect(()=>{
 
 
   return (
-    <ImageBackground style={{flex: 1, opacity: 0.9,}} source={require('../../assets/k.png')}>
+    <ImageBackground style={{flex: 1, opacity: 0.9,}} source={require('../../assets/beyaz.png')}>
     <View style={styles.center}>
       <View style={styles.design}>
       <View style={{alignContent:"space-around"}}>
-      <TouchableOpacity  onPress={showTimepicker1}  >
+      <TouchableOpacity  onPress={showTimepicker}  >
         <Text style={styles.logo1}>Kaçta  uyudunuz?</Text>
 
         <Image
@@ -172,7 +169,7 @@ useEffect(()=>{
       <Text style={styles.kaydetBtntxt}>KAYDET</Text>
     </TouchableOpacity>
     <View style={styles.uykuView}>
-    <Text style={styles.logo}>Bugün Toplam {saat} saat uyudun</Text>
+    <Text style={styles.logo}>Bugün Toplam {uyku} saat uyudun</Text>
     </View>
     </View>
     </ImageBackground>
@@ -254,7 +251,7 @@ const styles = StyleSheet.create({
     alignContent:"space-around",
     alignItems:"center",
     right:"3%",
-    left:"3%"
+    left:"5%"
    
   },
   design2:{

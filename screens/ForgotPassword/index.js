@@ -41,7 +41,7 @@ const ForgotPassword =props=> {
 
 
     return (
-      <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/k.png')}>
+      <ImageBackground style={{flex: 1, opacity: 0.9,}}  source={require('../../assets/krem.png')}>
          <View style={styles.container}>
         <Text style={styles.txt}>Lütfen e-mail adresinizi girin</Text>
         <View style={styles.inputView}>

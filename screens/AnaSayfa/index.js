@@ -11,6 +11,7 @@ import AddFood from "../../components/AddFood";
 import FoodList from "../../components/FoodList";
 import { DrawerActions } from '@react-navigation/native';
 import * as Progress from 'react-native-progress';
+import { MaterialIcons } from '@expo/vector-icons'; 
 
 
 //disable yellow warnings on EXPO client!
@@ -56,6 +57,19 @@ const AnaSayfa=({ navigation })=> {
  var user = Firebase.auth().currentUser.email;
  
  var date=moment().format('LL');
+ 
+ handlelogout = async()=>{
+  try{
+        await Firebase.auth().signOut()
+       .then(() => navigation.navigate('Login'));
+       
+    AsyncStorage.clear();
+       
+
+  }catch( error ){
+        console.error(error);
+  }
+}
 
  
         useEffect(() => {
@@ -144,17 +158,18 @@ const AnaSayfa=({ navigation })=> {
           return <FoodList list={list} />;
         };
       
-
-
+     
   return (
     <View style={styles.container}>
         <ImageBackground style={{ flex:1,}} source={require('../../assets/k.png')}>
-          
 
-    <View style={{alignItems:"flex-start",top:10,left:15}}>
+    <View style={{alignItems:"flex-start",top:25,left:15}}>
     <FontAwesome name="bars" size={30} color="black" onPress={()=>navigation.dispatch(DrawerActions.openDrawer())} />
     </View>
- 
+    <View style={{alignItems:"flex-end",right:15}}>
+    <MaterialIcons name="exit-to-app" size={30} color="black"  onPress={()=>handlelogout()} />
+    </View>
+
  <Modal
       animationType="slide"
       visible={addFlowersVisible}
@@ -237,6 +252,8 @@ const styles = StyleSheet.create({
   },
   listArea: {
     flex: 1,
+    justifyContent:"center",
+    alignContent:"center"
   },
   yemekBtn:{
     width:"50%",

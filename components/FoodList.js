@@ -38,7 +38,9 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     width: "100%",
     height:60,
-    justifyContent:"space-between"
+    justifyContent:"space-between",
+    justifyContent:"center",
+    alignContent:"center"
   },
   listTitle: {
     fontSize: 24,

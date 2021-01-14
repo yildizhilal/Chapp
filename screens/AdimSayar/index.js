@@ -69,18 +69,7 @@ const AdimSayar = props => {
  
   }, [])
 
-  handlelogout = async()=>{
-    try{
-          await Firebase.auth().signOut()
-         .then(() => navigation.navigate('Login'));
-         
-      AsyncStorage.clear();
-         
-  
-    }catch( error ){
-          console.error(error);
-    }
-  }
+
 
 
     return (
@@ -90,9 +79,7 @@ const AdimSayar = props => {
         <Text>{isPedometerAvailable ? "Hemen adım sayısını arttıralım!" : "Telefonunuz bu özelliği desteklememektedir."} </Text>
         <Text>Adım Sayısı 👣: {currentStepCount}</Text>
 
-        <TouchableOpacity style={styles.kaydetBtn} onPress={()=>handlelogout()}>
-         <Text style={styles.kaydetBtntxt}>logout</Text>
-        </TouchableOpacity>
+  
       </View>
       </ImageBackground>
     );

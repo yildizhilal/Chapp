@@ -1,22 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Modal,Image,Button} from "react-native";
 //import colors from "./Colors";
 import {Ionicons} from "../node_modules/@expo/vector-icons";
 import { Entypo } from "../node_modules/@expo/vector-icons";
 import { AntDesign } from "../node_modules/@expo/vector-icons";
 import Firebase from "../config/Firebase";
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
 
 const FriendList = ({ list }) => {
-  const [showListVisible, setShowListVisible] = useState(false);
-  
-  const [checkbutton, setCheck] = useState(false);
-  const [mynotes, setMyNotes] = useState("");
-
   
   var user = Firebase.auth().currentUser.email;
+  var resim;
 
   arkadas_cikar=(isim)=>{
     Firebase.firestore().collection('Users').doc(user).collection("Arkadaslar").doc(isim).delete().then(function() {
@@ -25,6 +22,16 @@ const FriendList = ({ list }) => {
         console.error("Error removing document: ", error);
     });
   }
+  useEffect(()=>{
+    console.log(list.cinsiyet)
+    if(list.cinsiyet==1){
+      resim=require("../assets/kurabiye.jpg")
+    }
+    else{
+      resim=require("../assets/dene.png")
+    }
+  })
+
 
   return (
     <View>
@@ -32,20 +39,28 @@ const FriendList = ({ list }) => {
       <View
         style={[styles.listContainer, { backgroundColor: list.color }]}
       >
-        <View style={{flexDirection:"row"}}>
+        <View style={{flexDirection:"row",justifyContent:"space-between"}}>
+
+        <TouchableOpacity onPress={()=>arkadas_cikar(list.name)} style={{
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+         }} >
+          <AntDesign name="minuscircle" size={30} color="red" />
+          
+          </TouchableOpacity>
           <Image
             style={styles.tinyLogo}
-            source={require("../assets/kurabiye.jpg")}
+            source={list.cinsiyet ==1? require("../assets/man.png"):require("../assets/woman.png")}
           />
-          <Text style={styles.listTitle} numberOfLines={1}>
+         
+          <Text style={styles.listTitle } numberOfLines={1}>
             {list.name}
           </Text>
           <Text style={styles.listTitle} numberOfLines={2}>
             {list.puan}
           </Text>
 
-          <Button title="Arkadaşlıktan Çıkar" onPress={()=>arkadas_cikar(list.name)}/>
-        
         </View>  
       </View>
     </View>
@@ -56,9 +71,7 @@ const styles = StyleSheet.create({
   listContainer: {
     marginTop: 10,
     borderRadius: 6,
-    width: "180%",
     height:80,
-    justifyContent:"space-between"
   },
   listTitle: {
     fontSize: 24,
@@ -83,6 +96,7 @@ const styles = StyleSheet.create({
   tinyLogo: {
     width: "20%",
     height: "120%",
+    
   },
   input:{
     borderWidth: StyleSheet.hairlineWidth,

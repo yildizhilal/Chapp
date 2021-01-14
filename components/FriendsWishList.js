@@ -43,7 +43,7 @@ const FriendList = ({ list }) => {
         <View style={{flexDirection:"row"}}>
           <Image
             style={styles.tinyLogo}
-            source={require("../assets/kurabiye.jpg")}
+            source={list.cinsiyet ==1? require("../assets/man.png"):require("../assets/woman.png")}
           />
           <Text style={styles.listTitle} numberOfLines={1}>
             {list.name}
@@ -51,9 +51,27 @@ const FriendList = ({ list }) => {
           <Text style={styles.listTitle} numberOfLines={2}>
             {list.puan}
           </Text>
-        <Button title="Kabul Et" onPress={()=>istek_kabul(list.name)}/>
-        <Button title="Yok Say" onPress={()=>istek_red(list.name)}/>
+          <View style={{flexDirection:"row", alignContent:"space-between"}}>
+        <TouchableOpacity onPress={()=>istek_kabul(list.name)} style={{
+        paddingHorizontal:20,
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+         }} >
+         <AntDesign name="pluscircle" size={40} color="green" />
+          
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>istek_red(list.name)} style={{
+       
+        justifyContent: 'center',
+        alignItems: 'flex-end',
         
+      
+         }} >
+          <AntDesign name="minuscircle" size={40} color="red" />
+          
+          </TouchableOpacity>
+          </View>
+          
         </View>  
       </View>
     </View>

@@ -71,8 +71,14 @@ const Arkadas = () => {
                   console.log("x",cities.toString())
 
                   var cityRef = Firebase.firestore().collection('Users').doc(cities.toString()).collection("istekler").doc(doc.data().KullaniciAdi)
+                  if(doc.data().Cinsiyet==1){
+                    var avatar="../assets/kurabiye.jpg"
+
+                  }
                   var setWithMerge = cityRef.set({
-                      name: doc.data().KullaniciAdi
+                      name: doc.data().KullaniciAdi,
+                      cinsiyet:doc.data().Cinsiyet,
+                      avatar:avatar
                   }, { merge: true });
 
             });
@@ -134,7 +140,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   listArea: {
-    flex: 1,
+    paddingHorizontal:"5%",
+    width:"90%"
 
   },
   title: {
@@ -163,7 +170,7 @@ const styles = StyleSheet.create({
     padding: 5,
     marginTop:"2%",
     paddingHorizontal:"3%",
-    marginLeft:"50%"
+    marginLeft:"40%"
   },
   add: {
     color: "blue",

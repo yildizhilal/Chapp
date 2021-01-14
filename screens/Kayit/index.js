@@ -29,6 +29,7 @@ const Kayit = props => {
       KullaniciAdi: kullaniciadi,
       Isim:isim,
       Soyisim:soyisim,
+      email:email
      })
     Firebase.auth()
         .createUserWithEmailAndPassword(email, password)
